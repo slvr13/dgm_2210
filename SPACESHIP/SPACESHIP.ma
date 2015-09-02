@@ -1,6 +1,6 @@
 //Maya ASCII 2016 scene
 //Name: SPACESHIP.ma
-//Last modified: Wed, Sep 02, 2015 02:53:28 PM
+//Last modified: Wed, Sep 02, 2015 03:00:18 PM
 //Codeset: 1252
 requires maya "2016";
 requires -nodeType "mentalrayFramebuffer" -nodeType "mentalrayOptions" -nodeType "mentalrayGlobals"
@@ -15,8 +15,8 @@ fileInfo "license" "education";
 createNode transform -s -n "persp";
 	rename -uid "06550EF5-4EF4-848A-304C-8AB12EBD3EE5";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -10.62225025438646 7.0774306000946883 2.7707003768251015 ;
-	setAttr ".r" -type "double3" -381.3383527232682 -1874.9999999952886 0 ;
+	setAttr ".t" -type "double3" -10.258236558365875 8.5032602356160591 -0.51614298994768859 ;
+	setAttr ".r" -type "double3" -389.73835272327318 -1894.1999999952832 2.5444437451708134e-014 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "E42F21C4-4F5A-CCA2-8340-33B12786394F";
 	setAttr -k off ".v" no;
