@@ -1,0 +1,553 @@
+# Mayatomr 2016.0
+# Maya 2016
+# File /Users/mitch/dgm_2210/Final Project/Repeatable Objects/Candlestick/candlestick.mb
+
+
+min version "3.13"
+link "AdskShaderSDK.so"
+link "MayaShaders.so"
+link "mayabase.so"
+link "base.so"
+link "coreutil.so"
+$include "AdskShaderSDK.mi"
+$include "MayaShaders.mi"
+$include "mayabase.mi"
+$include "coreutil.mi"
+$include "base.mi"
+$include "object_light_phen.mi"
+
+data "maya_scene:colortransformdata"
+"maya_color_transform_data" (
+"magic" 1298233697,
+"colorTransformData" "<ProcessListSet>
+<ProcessListEntry>
+<TransformId id=\"NativeViewingTpl_scenelinearRec709sRGBsRGBgamma_FORWARD\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"351a70dd-2a44-4903-83be-9d9bac585356\" name=\"scene-linear Rec 709/sRGB\">
+   <Description>scene-linear Rec 709/sRGB primaries to ACES primaries</Description>
+   <Description>Apply gamma (in Rec 709 primaries) to scene-linear values -- no tone-mapping.</Description>
+   <InputDescriptor>scene-linear Rec-709/sRGB RGB</InputDescriptor>
+   <OutputDescriptor>gamma-encoded RGB (Rec 709 primaries)</OutputDescriptor>
+   <Info>
+      <Release>2016.0.pr51</Release>
+      <Category>
+         <Tags>
+            <SceneLinearWorkingSpace></SceneLinearWorkingSpace>
+            <Input></Input>
+            <Maya></Maya>
+         </Tags>
+      </Category>
+      <OutputSpace>
+         <ImageState>scene</ImageState>
+         <ShortName>ACES</ShortName>
+         <ID>1</ID>
+      </OutputSpace>
+      <InputSpace>
+         <ImageState>scene</ImageState>
+         <ShortName>scene-linear Rec 709/sRGB</ShortName>
+         <ID>3bd912cf-1d55-3335-bff9-af283bcf2042</ID>
+      </InputSpace>
+      <Copyright>Copyright 2015 Autodesk, Inc.  All rights reserved.</Copyright>
+   </Info>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+     0.43957567      0.38391259      0.17651172
+    0.089600384      0.81471413      0.09568546
+    0.017415483      0.10873435      0.87385017
+      </Array>
+   </Matrix>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Description>ACES to Rec 709 matrix</Description>
+      <Array dim=\"3 3 3\">
+      2.5219347      -1.1370239     -0.38491082
+    -0.27547944       1.3698289    -0.094349548
+    -0.01598287     -0.14778924       1.1637721
+      </Array>
+   </Matrix>
+   <ExposureContrast inBitDepth=\"16f\" outBitDepth=\"16f\" style=\"linear\">
+      <ECParams exposure=\"0\" contrast=\"1\" pivot=\"1\" />
+      <DynamicParameter param=\"EXPOSURE\" />
+      <DynamicParameter param=\"CONTRAST\" />
+   </ExposureContrast>
+   <Gamma inBitDepth=\"16f\" outBitDepth=\"12i\" style=\"moncurveRev\">
+      <GammaParams gamma=\"2.4\" offset=\"0.055\" />
+   </Gamma>
+</ProcessList>
+</ProcessListEntry>
+<ProcessListEntry>
+<TransformId id=\"NativeViewingTpl_scenelinearRec709sRGBsRGBgamma_REVERSE\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"9b4059a7-f62b-438d-aeac-580b1da7d4d0\" name=\"Inverse of: [scene-linear Rec 709/sRGB]\" inverseOf=\"351a70dd-2a44-4903-83be-9d9bac585356\">
+   <Description>Inverse of: [scene-linear Rec 709/sRGB primaries to ACES primaries]</Description>
+   <Description>Apply gamma (in Rec 709 primaries) to scene-linear values -- no tone-mapping.</Description>
+   <InputDescriptor>gamma-encoded RGB (Rec 709 primaries)</InputDescriptor>
+   <OutputDescriptor>scene-linear Rec-709/sRGB RGB</OutputDescriptor>
+   <Gamma inBitDepth=\"12i\" outBitDepth=\"16f\" style=\"moncurveFwd\">
+      <GammaParams gamma=\"2.4\" offset=\"0.055\" />
+   </Gamma>
+   <ExposureContrast inBitDepth=\"16f\" outBitDepth=\"16f\" style=\"linearRev\">
+      <ECParams exposure=\"0\" contrast=\"1\" pivot=\"1\" />
+      <DynamicParameter param=\"EXPOSURE\" />
+      <DynamicParameter param=\"CONTRAST\" />
+   </ExposureContrast>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+     0.43957567      0.38391262      0.17651172
+    0.089600392      0.81471419     0.095685467
+    0.017415484      0.10873436      0.87385017
+      </Array>
+   </Matrix>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+      2.5219347      -1.1370239     -0.38491082
+    -0.27547944       1.3698291    -0.094349548
+   -0.015982868     -0.14778924       1.1637721
+      </Array>
+   </Matrix>
+</ProcessList>
+</ProcessListEntry>
+<ProcessListEntry>
+<TransformId id=\"NativeMixingTpl_scenelinearRec709sRGB_identity_RGB_FORWARD\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"994013a1-8edb-4e1f-98b0-02e805a9f34a\" name=\"Stock Identity Transform\">
+   <Matrix id=\"9c94db8f-9a3d-4054-b9e3-9ab44b2d0760\" name=\"identity\" inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+              1               0               0
+              0               1               0
+              0               0               1
+      </Array>
+   </Matrix>
+</ProcessList>
+</ProcessListEntry>
+<ProcessListEntry>
+<TransformId id=\"NativeMixingTpl_scenelinearRec709sRGB_identity_RGB_REVERSE\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"58468240-c684-44f7-b2ef-51023daa1c27\" name=\"Inverse of: [Stock Identity Transform]\" inverseOf=\"e2eaa92d-4656-412e-99fd-ac7367f34300\">
+   <Description>Inverse of: []</Description>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+              1               0               0
+              0               1               0
+              0               0               1
+      </Array>
+   </Matrix>
+</ProcessList>
+</ProcessListEntry>
+</ProcessListSet>
+"
+)
+
+options "miDefaultOptions"
+object space
+desaturate off
+colorclip raw
+premultiply on
+dither on
+gamma 1.
+acceleration bsp2
+task size 0
+contrast 0.1 0.1 0.1 0.1
+samples -2 0
+filter gauss 3. 3.
+jitter 0.
+samplelock off
+scanline off
+trace on
+trace depth 4 4 6
+shadow segments
+shadowmap detail
+shadowmap rebuild on
+"shadowmap pixel samples" 3
+caustic off
+globillum off
+finalgather off
+lens on
+volume on
+geometry on
+displace on
+displace presample on
+output on
+merge on
+autovolume off
+hair on
+pass on
+face both
+traversal adskTraversal
+"ambient occlusion" off
+"ambient occlusion cache" off
+"ambient occlusion cache density" 1.
+"ambient occlusion cache points" 64
+"ambient occlusion rays" 64
+"contrast all buffers" off
+"environment lighting caustic photons" 0
+"environment lighting global illum photons" 0
+"environment lighting mode" "off"
+"environment lighting quality" 0.2
+"environment lighting resolution" 512
+"environment lighting scale" 1. 1. 1. 0.
+"environment lighting shader samples" 2
+"environment lighting shadow" "transparent"
+"finalgather normal tolerance" 25.842
+"geom displace motion factor" 1.
+"gi" off
+"gi depth" 0
+"gi filter" 1.
+"gi freeze" off
+"gi gpu" "off"
+"gi gpu depth" 3
+"gi gpu devices" 0
+"gi gpu filter" 1
+"gi gpu passes" 4
+"gi gpu presample density" 1.
+"gi gpu presample depth" 2
+"gi gpu rays" 34
+"gi rays" 100
+"importon" off
+"importon density" 1.
+"importon merge" 0.
+"importon trace depth" 0
+"importon traverse" on
+"iray" off
+"irradiance particles" off
+"irradiance particles env" on
+"irradiance particles env rays" 256
+"irradiance particles env scale" 1
+"irradiance particles indirect passes" 0
+"irradiance particles interpolate" 1
+"irradiance particles interppoints" 64
+"irradiance particles rays" 256
+"irradiance particles rebuild" on
+"irradiance particles scale" 1.
+"light importance sampling" "all"
+"light importance sampling precomputed" off
+"light importance sampling quality" 1.
+"light importance sampling resolution" 1.
+"light importance sampling samples" 4
+"light relative scale" 0.31831
+"mila clamp level" 1.
+"mila clamp output" off
+"mila diffuse detail" off
+"mila diffuse detail distance" 10.
+"mila diffuse quality" 1.
+"mila glossy quality" 1.
+"mila quality" 1.
+"mila scatter quality" 1.
+"mila scatter scale" 1.
+"mila use max distance inside" on
+"progressive" off
+"progressive max time" 0
+"progressive subsampling size" 4
+"rast motion factor" 1.
+"rast transparency depth" 8
+"rast useopacity" on
+"ray differentials" on
+"samples error cutoff" 0. 0. 0. 0.
+"samples max" 100.
+"samples min" 1.
+"samples per object" off
+"samples quality" 0.25 0.25 0.25 0.25
+"shadowmap pixel samples" 3
+"shutter full close" 0.8
+"shutter full open" 0.2
+"shutter shape function" "none"
+"trace camera clip" off
+"trace camera motion vectors" off
+"unified sampling" on
+"maya allocate temp data on heap" off
+"maya custom alpha" on
+"maya custom depth" off
+"maya custom label" off
+"maya filter size compute" on
+"maya filter size default" 0.0001
+"maya reflection blur limit" 1
+"maya refraction blur limit" 1
+"maya render pass" 0
+"maya shader glow" on
+"maya shader glow buffer" "mayaGlow"
+"maya shadow limit" 3
+state [
+"maya_state" (
+"colorTransformData" "maya_scene:colortransformdata"
+)
+,
+"adskFrameBufferState" (
+)
+]
+end options
+light "defaultLightShape"
+"adskMayaDirectionalLight" (
+"color" 1. 1. 1.,
+"intensity" 1.,
+"useRayTraceShadows" off,
+"shadowColor" 0. 0. 0.,
+"shadowRays" 1,
+"rayDepthLimit" 1,
+"emitDiffuse" on,
+"emitSpecular" on,
+"useDepthMapShadows" off,
+"useLightPosition" off,
+"lightAngle" 0.
+)
+direction 0. 0. -1.
+end light
+instance "defaultLight" "defaultLightShape"
+transform
+-0.722072 -0.386506 0.573782 0.
+0.137161 0.732938 0.666325 0.
+-0.678085 0.559835 -0.47622 0.
+-5.7089 1.43864 -11.5934 1.
+end instance
+shader "shaderGlow1:perspShape"
+"maya_shaderglow" (
+"glowType" 1,
+"haloType" 1,
+"glowIntensity" 1.,
+"glowColor" 1. 1. 1.,
+"glowSpread" 0.05,
+"glowEccentricity" 0.1,
+"glowRadialNoise" 0.,
+"glowStarLevel" 0.,
+"glowOpacity" 0.,
+"glowRingIntensity" 0.,
+"glowRingFrequency" 0.5,
+"glowFilterWidth" 1,
+"haloIntensity" 1.,
+"haloColor" 1. 1. 1.,
+"haloSpread" 0.3,
+"haloEccentricity" 0.1,
+"haloRadialNoise" 0.,
+"haloStarLevel" 0.,
+"haloOpacity" 0.,
+"haloRingIntensity" 0.,
+"haloRingFrequency" 0.5,
+"haloFilterWidth" 1,
+"quality" 0.5,
+"threshold" 0.,
+"radialFrequency" 0.5,
+"starPoints" 4.,
+"rotation" 0.,
+"autoExposure" on
+)
+
+shader "volumeEngine1"
+"adskMayaVolumeEngine" (
+)
+
+data "perspShape:fbdata"
+"adskFrameBufferData" (
+"magic" 1178760550,
+"nonMaterialPassFrameBufferNames" [],
+"frameBufferInfo" [],
+"frameBufferTypeCounts" [
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0
+]
+)
+
+camera "perspShape"
+data "perspShape:fbdata"
+framebuffer "mayaGlow"
+datatype "rgba_h"
+filtering on
+user on
+output = "shaderGlow1:perspShape"
+framebuffer "mayaColor"
+datatype "rgba_h"
+filtering on
+primary on
+filetype "iff"
+compression "zips"
+filename "/Users/mitch/dgm_2210/Final Project/Repeatable Objects/Chair/images/candle/candlestick.iff"
+resolution 960 540
+aspect 1.77778
+aperture 1.41732
+frame 1 1.
+clip 0.1 10000.
+focal 1.37795
+volume = "volumeEngine1"
+end camera
+instance "persp" "perspShape"
+visible off
+shadow 12
+transparency 12
+reflection 12
+refraction 12
+caustic off
+globillum off
+finalgather off
+transform
+-0.943223 -0.107803 0.314181 -0.
+-0. 0.945868 0.324551 0.
+-0.332161 0.306124 -0.892164 -0.
+-0.476532 -3.59575 -12.4865 1.
+end instance
+data "pCylinderShape2:vxdata"
+"maya_vertexdata" (
+"magic" 1298749048,
+"uvs" [{
+"name" "map1",
+"type" 2,
+"size" 3,
+"offset" 0
+}
+]
+)
+
+shader "lambert1"
+"adskMayaLambert" (
+"color" 0.5 0.5 0.5,
+"refractionLimit" 6,
+"refractiveIndex" 1.,
+"refractions" off,
+"diffuse" 0.8,
+"ambientColor" 0. 0. 0.,
+"transparency" 0. 0. 0.,
+"incandescence" 0. 0. 0.,
+"translucence" 0.,
+"translucenceFocus" 0.5,
+"translucenceDepth" 0.5,
+"opacityGain" 0.,
+"glowIntensity" 0.,
+"hideSource" off,
+"surfaceThickness" 0.,
+"shadowAttenuation" 0.5,
+"transparencyDepth" 0.,
+"lightAbsorbance" 0.,
+"chromaticAberration" off,
+"normalCamera" 1. 1. 1.,
+"irradiance" 0. 0. 0.,
+"irradianceColor" 1. 1. 1.,
+"refractionBlur" 0.,
+"refractionBlurLimit" 1,
+"refractionRays" 1,
+"scatterColor" 0.5 0.5 0.5,
+"scatterRadius" 0.,
+"scatterAccuracy" 97,
+"scatterFalloff" 0,
+"scatterLimit" 1,
+"scatterCache" 0,
+"matteOpacityMode" 2,
+"matteOpacity" 1.,
+"FrameBufferWriteOperation" 1,
+"FrameBufferWriteFlags" 0,
+"FrameBufferWriteFactor" 1.
+)
+
+shader "lambert1:shadow"
+"adskMayaFastShadow" (
+)
+
+material "initialShadingGroup"
+"adskMayaShadingEngine" (
+"surfaceShader" = "lambert1.outColor",
+"cutAwayOpacity" 0.,
+"customShader" off
+)
+shadow = "lambert1:shadow"
+end material
+object "pCylinderShape2"
+visible on
+shadow 3
+transparency 3
+reflection 3
+refraction 3
+finalgather on
+finalgather 3
+face both
+tagged
+data "pCylinderShape2:vxdata"
+trilist vertex 282 p n t 2 b 2 triangle 280
+scalar `?`D?n± ¾ê„:?d 2fB¾èqx? çs>Kv8€•t@ˆÁl8üò@6ÿ[7a”<@³“Š?aJ ¿€ ¾å”â?d 2S4M¾èqx=R`È>LáZ8~‡@ˆÁm8úX÷@7ş¶İ¢œ@³­©?OÆ¿€ ¿y?N¯2X“_¿& =R`È>3m:7æÆ±@ˆÁi8at@YÇ'7¬hæ@¦Ë`?OÆ?rØ°¿y?Miu2M€d¿ÇÙ?à9>3m25yé²@ˆÁj5›“Ï@|‚+¶ğï@š-¯?2Êr?t’P¿2Êr?5ó    ¿5ô?G‰>ù 5Nåõ@ˆÁn5Nåñ@(ı·t@(ú?2Êr¿€ ¿2Êr?5ó    ¿5õ=R`È>ù&5¸=@ˆÁm5¸<@H"·¸sÈ@H ?y¿€ ¿OÅ?xÙ    ¿Oê=R`È> tR5néğ@ˆÁo5+ti@ ‚n¶…œ@i;R?y?vKÈ¿OÅ?u:    ¿OŒ?®×> tN5.Í@ˆÁn4ş 6@ ‚L·bC@i;¤>å”İ?tŸØ¿aJ>å­]9ıàò¿dÌ?J²=ÍŞô5Ÿ_ñ@ˆÁp5$(à@³Š{5¾µ@2ø,>å”Ş¿€ ¿aJ>åV|:}A¿dáÒ=R`È=Íßº¥œÑ@ˆÁp;7ş@³gA7
+T@2Ë>7~¿€ ¿sxy>££§º´İØ¿r’‘=R`È=š³l:7c°@ˆÁn¼	ë1@¿3­5½Êô?×1Ô>Ó ?fª ¿uİ§>°I‡ºlgà¿pXÏ>ş0=‘`º/@ˆÁn9{é@¹Kğ7"(B@ìª=éä:?V‘¿~lŠ=nÑ;?¿ª>ö„•=3(ø;v¥ä@ˆÁm½T @ÆZ­6´\Ò½ËM>7¿€ ¿y¼@=!;Hj&¿Î<=R`È=Oh;2ÎŸ@ˆÁl<¸´@Æœd6†Dİ¾E®A    ¿€ ¿€ ½z<z‘ä¿×Æ=R`È<Ğô€ºóT@ˆÁk>$É@ÅjŞ        ¹¿ ?Q›È¿nŒ_¼åùW<|E¿Şe>ô2Y<Ñ-:@ß @ˆÁl=…Î]@ÅòáµîXë¾G±$¾Ş‚?[`H¿y¼@=5¯Œ»!û—¿¿K>øÄ…?€  ¼–·@ˆÁl½‹Ù²@ÎD8ë&>@Ê¾7~¿€ ¿y¼@=DÈ;:H~Æ¿´N=R`À?Xr:’å@ˆÁp;¼
+Í@Å!    ¿y¬2¾7¿€ ¿sxr¾Ÿ‚/¼IV¿s=H=R`À?xëÿ¼Æ4@ˆÁk½™iÕ@ÄG=7©µâ¿c‡ã¾n?kV¸¿;¾¸Î¼>e¿nÅ? |?z°È¼2A@ˆÁi½Œ¾â@¸k‹7]:ºÀ£¾å”İ?uè¿aJ¿ 8"»‹ª|¿]’µ?e+?rŠ´Óëy@ˆÁk3ayñ@­î?·)¼ÀSM¬¾å”İ¿€ ¿aJ¿0A»—¿]F=R`À?r‹»Ğ®v@ˆÁj¼Ö1º@­÷ ¶›ÀSo¿y¿€ ¿O¿¿•´²§Æ¿Oğ=R`À?lµÆµê@ˆÁm5€'@¥Lˆ¶ÈÇÀVš…¿y?wßğ¿OÁ¿Xê²¥q¿M»É?i?lµåØ·@ˆÁk5›q½@™6ªµÀx@è¿2Ên?{ïè¿2Êo¿5ô1Ñ! ¿5ñ? Å?e¢’    @ˆÁk47Kè@ŒÙ|·úwÀŒÙ„¿2Ên¿€ ¿2Êq¿5ó1¦ÖÀ¿5ñ=R`À?e¢’µJÒu@ˆÁj5aİw@Œß
+7DÀŒß¿OÁ¿€ ¿y¿O:[2Nã™¿Né=R`¸?_3T    @ˆÁl3¶Ó>@wö ·¡ßşÀ™ö¿OÁ?€  ¿y¿Q(2>@Ì¿¬Y?ô ?_3Tµ H¾@ˆÁk5e?@VO7‹µÀ¥L¿aJ?ƒˆ¾å”Ú¿d²Úß:¾èqs?if?XÄ µ®’×@ˆÁg6 5@4â…7pğ²À±€Ø¿aJ¿€ ¾å”Ö¿dÿ²ÊQ¾èqq=R`¸?XÄµ‘ÿ@ˆÁg5ä/J@4Ü8¿[À±z÷¿sxu¿€ ¾7|¿s³€¹¤m¾œÊ=R`À?RU‰µ~`)@ˆÁi6Ğj@H}·˜§(À·ö¸¿sxu?…Ğ¾7|¿tU¹¬gØ¾˜Ï¤?Y?RUŒºßö@ˆÁi¹µ]V?Ëx¶b9À¾ƒ¿{vÑ?†¤ô¾Æ¿|ÃñºfŞâ¾"CŠ?/?JÎ*»ŸUg@ˆÁh9Ğso?¥É·yX†ÀÅÙ ¿y¼=¿€ ¾7„¿|Àºa÷N¾"¢ø=R`À?Kæù»^Xã@ˆÁhº:í9?€Ú7j¦#ÀÄ§	¿€ ¿€     ¿şç»¯Cƒ»¡u=R`À?EzZ¼œ–Ë@ˆÁl;µš>¿¶Û·ò¾—ÀÆ+ş¿º–?‰’D=˜7-¿é$»ÈJÏ<ÒuQ?	nÑ?B}¼éŞŒ@ˆÁo;Šº¾£„®·Ì½ÀÆa¿{vÑ?cL>To¾¿z¥P»æ~a>P5·?¯Ş?<ø¼¼ÈR@@ˆÁp;…€/¿¯õ¶hÀÄ¿y¼=¿€ >7|¿z¾e»ø·´>NJş=R`À??¾½"GÚ@ˆÁo;¯å¿Áš6ÏMÀÅU„¿sxu¿€ >7|¿lØf:‡!>ÂR[=R`À?8¤0;X³Â@ˆÁo»)µÀÀ¶1y1À¶ÛW¿sxu?¯|>7|¿l-²:¢Oˆ>ÅŠ}?Ã?8¤14¼h:@ˆÁq50ĞpÀ;Ö¶:$4À°GÉ¿_áh?àt>ÑÃ†¿_àG;ón¶>øJ?b>?3’È<çã@ˆÁo¼_X7ÀCf¼7¹5KÀ­HM¿aJ¿€ >å”Ø¿`ré;ø°p>ö5ò=R`¸?2:¤=•q@ˆÁk¼¢W¡À0°¿7O	ÕÀ±èş¿OÀ¿€ ?y¿S¤‚;ü®Õ?=R`¸?+Ôë<É
+6@ˆÁk¼IÀkˆ+¶¥åDÀÔü¿Pqß?Œ~?	ùœ¿U¦~< Ùœ??
+ÌÎ?-™­=ê1@ˆÁk¼Åo|ÀG„6Åx'À©ïø¿0u>?‰äH?5œ¿=È²;„£ì?+Î?	•6?$çf<‡Ò@@ˆÁl¼B5²À„6Ç6€ı8À”¿/Ú¿€ ?6ƒÿ¿=4;wE?,qá=R`À?$–\8}to@ˆÁk8}ÌÒÀía7MÍØÀí^¿y¿€ ?O¿¿â‚¹P²F?OˆÑ=R`À?Ã¹ñ?š@ˆÁj:†<À§?]¶a½´ÀWY¿y?†ê¸?O¿¿{k¹@jA?M¢6?0Ò?Ã8Ñ@@ˆÁl8û§Àšoğ7¬ÀzÔw¾êê¾?…¼?`\¾ñâÀ»Å?a¡?VF?.»`p@ˆÁk<4šÀ±ˆY·2À>dp¾å”Ù¿€ ?aJ¾ñú¢»1?aš­=R`À?¬Iº¥úr@ˆÁk;=7À³.    À6—ä¾7}¿€ ?sxs¾ L¹ÂÍ6?s!F=R`À?OºÛÚµ@ˆÁn:±°À¼«q·€æ€¿û¾¶4•?†P8?pÛÒ¾¢6"¹éä?rÏù?è?;Æ»µÎ@ˆÁo<(bVÀ¼¼¸©‰À Ê¾cfÌ?…g ?uf½Õ÷\<ª7?~—2?{Y?ÏC;YTŞ@ˆÁo¼¸¢LÀÇÖ|5ø¯g¿B²¾7|¿€ ?y¼9½Î¼<¢?~¯a=R`À?ñÂ;„ˆ@ˆÁo½4_¸ÀÇG7;ùA¿›§³   ¿€ ?€ <ƒì×<1©?íY=R`¸?˜Dº»tm@ˆÁm½®«dÀÅ*v·–§=lº¸½Œb%?ƒYˆ?sú'<.ïø<§?òg?…s?|;>Š@ˆÁm½˜I†ÀÅì6™c²¾N¯¥=ÀOô?ƒš?rÖÂ=Š"è<]ßv?d»?£¨?˜S»ˆX·@ˆÁl½›;ÆÀÆÌ¾6\–>tq°>7x¿€ ?y¼9=‡YI<V°?k=R`¸>ş}‚»{Ú™@ˆÁl½(4ÖÀÉR7!FÛ? K>7z¿€ ?sxs>}˜|;}í)?xû=R`¸>ñĞ|»Cë@ˆÁk»ÃXÀ½îÅ    ?öÙõ>b«?ÙÄ?u^¾>z¯Ã;Õ?x5H?ÑÛ>ô‡t»)9@ˆÁl¼ƒ!ÿÀ¿»•¶²4??ÂJ|>å”Ô?„%È?aJ>âÕ·:wI
+?e8?å>å#l¶†ß@ˆÁq5‰ªîÀ¶Ù·“©7@.–¤>å”Ô¿€ ?aJ>â§Y:>Â?eŒ«=R`¸>å#rºÆa|@ˆÁo»T‘Àµ02·zş@2ç?y¿€ ?O½?2Üºø'-?R%š=R`¸>Øz<;ø--@ˆÁl;ó¾êÀŸÒ¬7Óš­@t?y?„@Ì?O½?º÷} ?R3^?ñ«>Øz8µÓ1‰@ˆÁo5|ñÀ«Ô7úl_@Rÿş?8t‚?ƒòh?2Êl?2Pm»Ÿí±?7®1?Í>ÊÈ<yê6@ˆÁi<w÷ıÀ’d¶—}@Œê?2Êj¿€ ?2Êl?2]ƒ» DM?7¡y=R`¸>ËÑ<­šN@ˆÁi<Ÿ8Àê¸ü@‘®³?O½¿€ ?y?S_b»—*?j¸=R`¸>¿)5<G$Ì@ˆÁn<
+ùÀRYx7Áâ@ªº?Rbÿ?ƒ"\?y?S†»—ÓÒ?àÇ?k>¾‚<¦Uõ@ˆÁm<‡íNÀq/ª·Ï@ èw?aJ?‚à,>å”Ö?f?º¾üJ>ßÎÅ?Lª>²Z;İ4@ˆÁk;šÿ7À/–Ñ7¬@·RR?aJ¿€ >å”Ö?f3ºº»8>à @=R`¸>²Z´Â„@@ˆÁj5>áSÀ7ÖÅ·cG
+@´fó?sxq¿€ >7z?si‚    >“F=R`¸>¥ØRµ0ÈÕ@ˆÁk6,rA¿Ï`À7·Ó·@Áf*?sxq?½d>7z?rhS    >¤¯?Ä‘>¥ØLµòv@ˆÁl5ÉãÀ·d7	Ë¼@ºå0?y¼5?|-p>7z?|Ù'    > 0	?->™/H´øµ@ˆÁi6DIA¿}B8&ª@Çàª?y¼5¿€ >7z?|Ù)    > 0=R`¸>™/Pµµ@ˆÁd6a¼¿})7]]i@ÇÌâ?ÿú¿€     ?ÿõ    :“q=R`¸>Œ‚‰3¹u@ˆÁd6Hßi>§$õ·*Ùù@Ç¹¾?ÿú?tà0    ?ôx    <™ªf?YÌ>Œ‚€´7]´@ˆÁc6k(Â¾ªX9´W‹e@Ç¹f?y¼>?m÷ˆ¾7€?|Ù-    ¾ /t? »í>«š4Åw @ˆÁf6Øî?|é!·¸ş@Ç›R?y¼>¿€ ¾7€?|Ù-    ¾ /{=R`È>«¢4Æø@ˆÁi6l?|ÂR·†b@Ç|q?sx|¿€ ¾7€?s@Ú    ¾ŸŒ=R`È>fFx5›%Z@ˆÁl6n¾ë?ön(    @½›ö?sx|?h¾`¾7€?s8ã    ¾Ÿ¼’>ÿ>fFf7Ş=>@ˆÁk8^Vƒ?øvÃ·fĞà@½i    ?`ø    <§°\?éÊ¼ƒÁn?C/>G“‚;¹Äg¾;ñÁo(Ás>Jß¼ô“;?0üŠ?k& ¾´[²¼°¤?~˜ë=Ñ…Š?IL–=ôŒ¿Õ?VÇYÁğƒÀÀ¼w¼ğØ|¿oÀã?"´?oXè¾ìl¼÷«e?~ŒÛ=Ğ¨A?Kí>¯ ¿ç©…?NÙÀ¼”PÀ•¶Ö»ì¿Ì@®?u?oXè¿u½qìv?k=~Ñ…?Nñ>
+&ÚÀş>'ÏÀì+wÀä½-¾«Ÿ\¿­P¬>ìl?oXè¿"´½Y<S?~üi=’)‰?Q¬>±>¿üïÔ>¨|ÀÂ¯ÀÊ[¾L„¿ÙVß>´[±?oXè¿0ü†½”|?~ë=gdı?S<I> V’¿öæy>K=sÀ¨LoÀİÉn¾ÆC/¿ºØÿ>x–º?m!X¿?Dö½ó%ö?~'<Š¹è?SÛÈ>-Å¿£å«¼J}WÀ–“Ààı*¿K‹¿œC=ÿÕª?i¤¸¿CíÉ¾9wÌ?{³Ë¼µ(¦?TÈÔ>:éÎ¿l-±¾l2\À~3ÄÁ­¿Êk>ì1ß3  ?b"ø¿C±;^®?Ô³½8é?U«ò>F`Œ¾§öo¾€äğÀŠå˜Áø¥¿+Ï‹¹¹o­½ø–µ?i(¿D0á>_ƒÃ?yµW¼ölš?U†>R’J?\\z¾·+uÀ'_Àó°N?åÂØ<Ñv¾x–º?o±È¿?Dô>,ÖŞ?|S»“E?TS£>_hØ?’—¾GÃÂÀ’‡zÀâÄ²?¤ÌÇ?Œ¹J¾´[°?r¿0ü…=»Ş­?~Š¢=^Z…?RÿU>mtÜ?»?#>ŒÍ“ÀÇ©æÁ¾?!Z*?…ı¾ìl?r¿"´=’æ?~k(=­oı?PÉ>x Ú?àíÕ>qSÀ—lzÀ¸Æ.>®´K?ÌáŸ¿u	?r¢È¿u=¿^Ü?}ş=ªV?Nçy>¯$@I—>Ü~nÀ÷¡hÀë>æŸ?Ó½/¿"´?r¨¾ìl>Sã?|èÅ="Ö?L†>…\€?ã¾™½¨á½À¾}éÀ”;õ?.ä?Æ6e¿0ü?u±`¾´[®>Aü¥?{Y¼6û¢?IZ>‰´?¸ö£¾áWòÁœİÀ½Âã?‚ÿ5?“¿?Dò?xºÈ¾x–²>LšÒ?zÖ%;F@~?F	`>Œ4?œ â¾“òeÀìÆ_À•ıe?fä×?I´÷¿D0ß?y€x½ø–¯>H‹|?{
+Ğ:ÅğŞ?BÆ>şl?4Ï½ÈÙÔÀôÀŠaù?W!">Læş¿IÌ?zF(3`  >_rá?yÅA¼¯™???>¢÷=ù¾lH
+ÀŞéÿÀl(h?Vúc¿1Aœ¿D0ß?zZà=ø–º>g£z?y6N½JÂ?;â/>"l¿t^É¾3][Á	÷À˜)±?}*¿èÅ¿?Dò?y-°>x–·>‡PX?v¡¢½7z5?8êÔ>Œi3¿#ÿ½¼Ï_ÀáÜşÀ—E?V¢¿»İÂ¿2¸¾?w >­‹ø>ˆ«"?v˜D¼ò~K?5'>ŠÅ¿É±y>yoÀá4°À©Ã%?³(LÀÊ¡¿"´?r>ìl>x@O?waº½°s)?3v>†)t¿às=K²ÀÉêÀ³‰ş?–¶(À÷¿‚¾?r?
+gV>­?zv¾«?/‹>€§¿ÏõM¿ÚÁÀÙDoÀŞU>øÓEÀóå¾ìl?r?"´=æi‚?{±¾Vç?.Bø>w:ÀnX¾äG¦À¥ìcÀÏ!Â>ñ\0ÀåÈ¾´[¯?r?0ü‚= »í?|±œ¾„?,.>lœ¿şèi¾ø+yÀ—áÀò$>²+h¿û¾o¾x–¶?r??Dò=_u?}y¾?+$ >`4¿½¸*¾çòáÀˆ,MÀöFÀ>›´¿¦w7½ø–³?r“°?D0ß<ÒI?}½–¾/?)µÎ>Séh¿¢­H¾ä6[ÀtXáÁD>Q8&¾·¥2@  ?r?IË;‚„¼?}Ò¾F?)J¨>G?ª¾¦Œ@¾ÿ¿ÀjeÊÀæÙZ¼N|n¾B5=ø–²?r?D0ß¼j¢Á?~Ù½ú“?(¡Œ>:&?;uş¿.úÀ/íÁê½Z­?.E>x–²?r??Dò½gn¨?}Ÿ­½ı5?)õ‘>+Ør?¼åK¾ñšTÀ¦/úÁL¥¾•y~@¥¯>¿’$?r?.!:½¢ÿÒ?}¾ÂÊ?+V:>!Ÿr?©“¾¿ªÀ¤4Áÿ¾·Y1?:|>ìl?r?"´½Ä7¯?|†E¾“B?.o>8?0à¾ë·³ÀğÒÀ ôÈ¾¡N¬?ú	?0?r?åâ½Åt?}Sí½Û[?0ö>	"¦@Ùm¾×`ÅÀä«1Àùš¾á@1/¿?"´?r>ìl½ÉèV?}×½¬Ye?2¥î>Ü@«¾½»À¿.aÀ¢s“¾‡@*?0ü€?r>´[®½×\?~7Å½Yd1?5K=ôÜü?ğ4Ñ¾‚òbÁnÀÍø¾ğ6@5±??Dğ?r>x–µ½ÖRp?}1½²Ò?7óØ=î–D?f„¾À¬†À—à<¾Èzx?sL¬?B7?p2È>1	Õ½¯ü1?|hM¾¥?=C°=âQˆ?R¿ˆAÀ÷c“ÀA‹¾ µi?¢¬?IÊ?j7Ø3`  ½Ãâ?}ØÊ½²’L?>F+=åìø>Î	¿¿.¢Á\;ÀXNş¾‚²	?d`´?E6?j7Ø½Ëîæ½¥û?'ì;}Á ?CPî=äæ\¿+àm=7jvÁ*¾À«a¾¼&d>YØÇ??Dú?j7Ø¾x–º½tt½?p€<é…?EµZ=í,D¿£j°=Åİ8Àòz©ÀjcB¾@˜M¿_º3¿P<Y?†|>Ï|Ö?dÂ?G^š¾kšÙ?-!c>­ß
+¿Í{¾{ÏÀ¢¢1À&=š?ÄÍÏ¿·Åj¿_áh?àt>ÑÃ†?#§C?6^³¾”@ë?*µĞ>ºBÂ¿j»™¿„3KÀ˜NùÀJë@&ê¿¡†«¿Pqß?Œ~?	ùœ?¼/?Bö¾ç¥?$#À>´E¿Eî¿o/À†Ã¡À`X@ui¿»–F¿;Á?„V?W?i?Mõ¾"Ø?'H3>§9"ÀT½¥DTÀ™£ªÀu¥•?ìã¿÷@ş¿ßO?€SĞ?"Vb>Út·?X—¿¾£?!iª> )¨À¾Ï*QÀsHšÀ‡|?¤í™¿çü¿0u>?‰äH?5œ>íO?Tİ¹¾œhK?’’>§Ú°¿9Yÿ¿‡dëÀ€9]À£Ü~@+Ò¿¢®¿y?†ê¸?O¿>ªZ?cÅ6¾ ‹?iÔ>Ä¸½+£=¿¼ätÀ†SéÀ›¤?òÒ$¾ª\¾¿†O?~Zx?5¬>4º?d£Ä¾¨Mz?Kw>”ÓÖ¿Ó—c¿#ÂÀ=Ü À•—?EJf¿Á>¾Å*>?} x?HR}>`P)?i0	¾³ä?>Ğ>ŠœÂ¿Ä¸ì¿6êÀ7,À°Pû?´¿îƒ¾êê¾?…¼?`\>ní?gáĞ¾µQ?üİ>ôF½®N¿ÎŠÙÀ‹|öÀ®b¬?¼¿m¾¶4•?†P8?pÛÒ>3‰ª?b£Ï¾Ü˜?¶W>†¹t>Ä¦ZÀ HÀ#iÀ«w?XóË¾å
+*¾‰Ç?z±@?V°N>¨?hf¾É‘Æ? b>~¿@¿ŠR¿Oš`À‚ÛÀ¿îŠ?	lD¿rÂX¾3H?yk8?^&ñ=Å»R?j‡¾ÉŒ?µœ>hª¾åS¿hçóÀt”ÀÄã*=Ñİª¿»óú¾cfÌ?…g ?uf>Öñ?Xr/¿Êƒ?Ş>rÜ?•wGÀ ñÿÀyŒÆÀµ?.-L½+ô½Œb%?ƒYˆ?sú'>‘;?C%Á¿"q›?Ù>TY?Õ&wÀèëÀä¬ÀŸ‰¸½ƒğ¿=«;ùP?z­x?m–P<Ã [?a:Š¾óÁ?é‡>N3*=ø{W¿nI¿Ö^ĞÀ¤/¾ó?¿€áÄ=õˆ?z¾(?lôX»ØÓ?j"¾Ï›?°Ç>/´>>åºj¿OG~¿ÚÊÓÀ°Åº<å•>$&e=ÀOô?ƒš?rÖÂ»bV? #¿]Ø?Q²>4?-B×¿îçq¿mx„À™	>ÑÔ¼ö>b«?ÙÄ?u^¾¾S$D?H™z¿ ?Ñ>Ù¶?'½ô¿šW²¿œ“À¦ò­¾¨È ?N€>Ai?z!¸?j«_¾#€*?l^j¾²Ô\?ño>Ö?“ò›¿#fÀ6ÕÑÀº_¾µ »?òP±>ÕŒ?}À?G(¾WÌ?nÒg¾•†ß?Åa=õåğ?ŞĞ¹¿$ÕœÀW0íÀ¤Æü¾às@>å”Ô?„%È?aJ¾‹zÌ?bóğ¾¿w?Íµ=Û<p?•¨µ¿ª{âÀ ¬Àš#¸¿R¤?øé»?y?„@Ì?O½¾Xø?lå¾¡7$?iÔ=£ÖX? 6¿­+şÀˆĞÀå§¿nTW>¦‰L?W?|í?8çé¾RªÆ?n1‚¾›A?·=Åp<?–°¯¿#
+ÔÀ.¢ğÀhAÆ¾Ò$Ú?œHD???|¨? #5¾aGN?oq³¾Úu? áÈ=™—@	·›¿1Ô×Àƒ‘òÀŠlí¾¹Ì°@G?8t‚?ƒòh?2Êl¾w0«?k†¾6?	$=^'è?!œ÷¿ª|°À«ãÀfÄ¿ˆìn?­M?Rbÿ?ƒ"\?y¾¢÷F?i/Ë¾†x?!¨~=¢˜?€¿‚ú|À’!ßÀ……j¿¯jÎ?@ä?9yÙ?x€P?£5¾ƒù?p‡#¾fÂ™?&8¡=wÚÀ?°!Ó¿8 +ÀˆüÀ`¹¿¸Û?°W­?Héf?wÜ@>ÍÛ€¾”Û]?qäà¾ã?+İŸ=>x@ Kø¾—À¸—ôÀ27İ¿Ş¹@ ]Õ?aJ?‚à,>å”Ö¾Â]?gJÅ¾KÊÓ?(¾+<¾¸À?‡–¿\<§ÀŸ4¦ÀƒÈ*¿Ì±B?õ%?sxq?½d>7z¾¦ÍS?lÂé¾Høq?/ÓÙ<Ÿ >ğ¿3¿ƒwÀŸ†Àk}¿š1“>%ÓF?Y^°?x¡ğ>Aj¾Œ	?r¬^¾'³?1Ä†=š0?2§¿U¶ÀÓ—À	¿ 6?Gfb?^>^?uf >l¤¾f¤?uá9¾'‹)?8’<ü_p?cê¿c±Àé§À`ı¾§Ñ ?ŒÀÀ?y¼5?|-p>7z¾h(°?u:»¾47ú?7®T;› À>b¨î¿hêãÀ¤|XÀt“•¿cK>€"?ÿú?tà0    ½õq‰?{–r¾!’??ˆÌ3   7iÜ‚¿g)À¡+®Àd2ˆ¿	t¶¾ÏòN?de?qMø3   ¾*%U?zªd½ïV?>éè<öLp=HtJ¿LâÀª‹À¦¾ÇË^½óÜ?_2ø?o¥ ¾KØ½¨£Ã?~‡&½Œ6g?F& <û¿1³º¾„Ú)À½ÿî¿í©¼¾TÎƒ¿!å?y¼>?m÷ˆ¾7€<„?~4½ñ«ø?GcB;›¡€¾m_¿øbÀ¡ÿÀsâŸ¼Æş¾£ M?sx|?h¾`¾7€=Ï
+?&¼Í?O=½< `¾çC·½¦eĞÀ›bMÀp^$>ËFë¿(/?Y^º?kÖ ¾An¹ùk¢?ÿçºÓºD?L¨—=ˆ¿R~½ˆÉ¼ÀœgCÀ*T€=˜ŞÈ¿f02?I#U?n²(¾ÌøH<hLê?~µ5=ËrÏ?SL¾=@¾P¿åqí>÷‹À¤3GÀ.ÔĞ>!'M¿îKo?`D?n± ¾ê„:=‹¶ö?~„=ª:	?VĞÕ<Æ‡ ¿1^>ä	İÀ™vÀI”>¥pµ¾ßH?OÆ?rØ°¿y;öåh?9=´:?]i=Ğ°¿GÒ>Ô[ŸÀ—Ñ8À‚0‘=½3¾Ğ;¤?9?q À¿|»¼‹Â?~Øÿ=¾î?Y½={”8¿®©>¥†}À…FµÀW¹H=¤s¿² ş?ŸÀ?rˆ¿Ÿ¿½X+?~Æ©=¨PB?^TÒ=ÀÖ>CôÀ‹¸À‡;©½\§dÀ+(b?2Êr?t’P¿2Êr½?=[Š?cl=o¾ ¿GR>©iKÀ“‹À’ñx½‘O¿|$??y?vKÈ¿OÅ½l™¯?~¹=¦“ø?h§Æ=£ÖP¿
+‹Ì>˜ÌÁÀ^ª,À˜2¾^Ì!¿”-”?şH?sZ(¿=,>½†Úï?~t%=³Î‚?bD=ÇQ(¿Óğ>LerÀY#(À™e¾ ¿è]´>ÊE²?r„¿Mg£½êpR?~O³»Ü†?eİö=õ
+ˆ¿»ºƒ½lIÀ³+À¤‡¾ó¿³–>å”İ?tŸØ¿aJ½ø¼Ò?}Ôœ½<Şç?lCá=Û<p¾ër’¾‚ÌÒÀ`õÀŸÒà¿"­J¿ƒæ>Ó ?fª ¿uİ§¾Xç½?pÇ€¾‡ô"?pY¾>çL¾¦º¿³?±À€‘½À£Qí¿ œâ¾J¿h>†z„?mÆĞ¿Y^¸¾;I±?xT¾#ÉÄ?hë>Ô¦¿qb¾äÕšÀ	C¶À®G¿xGĞ¿&y+> ñ›?dŸø¿^³y¾nû™?ol¾ˆIœ?j«>.Ú˜¾ÿvî¿N6ùÀòÀÁ+‚¿Ğ9Ú¿
+ä=éä:?V‘¿~lŠ¾¼´?cÔ¾Â €?rÀ>00¾Øk¿æä,Àmë>À§ÎÓ¿áÌN¾…ò]¹¿ ?Q›È¿nŒ_¼ßB8?T•¿vß?nåÎ>FÉ¬¾o;§¿»„¿ÜÎÀ™³v?8ôĞ¾ò›Ú·—H ?[¨¿dk=bŠ?qÂŒ¾§—]?i~â>FT4>Ì›¿F¨ÎÀH•À´kG=3ûö¿„Ÿ¤½í?d¿lu8>Ë?lTï¾…L
+?hÉ>a±R?¿]¿O]À ùìÀ«Û ?ÃZm? ’¸¾Ş‚?[`H¿y¼@>¡)y?a,Ö¾¶¢|?qj>bB¢¾|ˆ¿¿q2À"—À°Î@ qQ>Ğñ¾n?kV¸¿;>fù?uÍ<¾*7?rÙô>~f<>¯‡<¾ë{½À‡á6À¡n(?Ã€>/¸¾†„¢?m&°¿]2n>Erà?yw·½ëRë?iı >xtÌ?{Õ¿ó}À4_CÀ½˜”?¶ÎD?Ñq}¾ÌøF?u™0¿I#P=õ€?~ù¼Ÿ'Ê?f>‰@¨?ãµ÷¾Fæ€À'¸şÀ«–?r?çM¾å”İ?uè¿aJ=ş?}‰ä½x¾P?lCå>ë1?Üğ¾¡äxÀ‡ªÀœ©Ø?c>áñÖ¿y?wßğ¿OÁ=¤bd?&­¼Zÿå?h§Ä>Ä¸?>Ü¾,¥ÊÀ—À“9æ>Û¯?;ûú¿W?w ˆ¿8çë=Ç’m?~‘®=&zu?bYØ>”¸š?¨Ë.½\—ÀP1FÀ…Ìí>±’c?§"ë¿Ÿ¼?y0¿Ÿ½> Q;?|=ÇÏ?^*—>Ÿ>ü@J”=‡Ğ!À€ÇÀ„†à>Èıó@ˆë¿2Ên?{ïè¿2Êo>J?}¼i<—·?cp>¨Âx?9§%¼™™ÀÀ¢ü?æš?=ï·¿OÁ?€  ¿y>Qù?z+;Æâ<?]i>³À:?7·h¾"¼uÀ-×À„G?jºC??f+¿8çê?{ğ¿W>qPà?xtÃ=N"È?XÎú>§o°?¦Àú¾ –ÉÀ„¶¾ÀW_Ë?:o
+?±ª¿I#O?¸H¾ÌøD>˜åb?t- =¿–?S3‹>¯nf@¤¾ÍÓìÀ«›¢À9?XèA?ø&ı¿aJ?ƒˆ¾å”Ú>ª?w§_» nÌ?VSi>ºÎÀ?AN8¾VûåÀš¼À‚­?‰cî?T´¿sxu?…Ğ¾7|>‰Í?v’<5Çh?O=½>ÁİO?(3í¾)òÀ›JÀD/_?`¶‹?	+K¿]Ø?‚-D¾Aj>œÙl?sN= 4L?LÅD>³N(?­Eñ¾r–‰À¨¶{À&ŸY?Hì‹?o×¹¿gÁ‹?ƒ`¤¾Ai>¬?q÷»İ’?E˜ë>¶†Ò?“7¾C÷^À¦±À	-[?BÈ>²:¨¿{vÑ?†¤ô¾Æ>ñW?s9t¼üPœ?F>>Ä÷‘>iÄ‚¾‚…úÀ—ü÷À:ß,?ƒ{Ò?\•¿º–?‰’D=˜7->¾9ò?iş@¾&±Š?;Á±>Èİ=¦æ¿`±œÀ§*ÀBy÷?¬Á]?­¿jc!?„”3   >¾ãq?lúç½‚®t?=¿ƒ>¸Ñõ> Â ¾¶øqÀŸeÛÀt?WU~>L±¿i
+?…¿(>Am>âğ™?a´Í¾%Â?7pl>¶0~¿Whı¿"à:ÀÍ\2À2?ƒ˜+¾÷Â¿{vÑ?cL>To¾>ıÍÒ?Tå¾€/?4ıU>Ä÷“¿o;ğ¿·ùìÀ²ñ ÀC­w@Oı>Eæa¿sxu?¯|>7|?‹¥?AçÉ¾•M‰?/ÓÙ>ÁİO¿F}[¿Ãì~À™ÖÀj}š@‚¾áSš¿\Ûw?†êL>Al?	:¶?PÈ¾_:W?23ß>´ƒø¿¢ú¿9ÀÉ`âÀ1ñ?°	¿§3Ä¿Pqß?Œ~?	ùœ?¼/?Bö¾ç¥?$#À>´E¿Eî¿o/À†Ã¡À`X@ui¿»–F¿0u>?‰äH?5œ>íO?Tİ¹¾œhK?’’>§Ú°¿9Yÿ¿‡dëÀ€9]À£Ü~@+Ò¿¢®¿0u>?‰äH?5œ¿=È²;„£ì?+Î?	•6?$çf<‡Ò@@ˆÁl¼B5²À„6Ç6€ı8À”¿Pqß?Œ~?	ùœ¿U¦~< Ùœ??
+ÌÎ?-™­=ê1@ˆÁk¼Åo|ÀG„6Åx'À©ïø¿sxu?¯|>7|?‹¥?AçÉ¾•M‰?/ÓÙ>ÁİO¿F}[¿Ãì~À™ÖÀj}š@‚¾áSš¿_áh?àt>ÑÃ†?#§C?6^³¾”@ë?*µĞ>ºBÂ¿j»™¿„3KÀ˜NùÀJë@&ê¿¡†«¿_áh?àt>ÑÃ†¿_àG;ón¶>øJ?b>?3’È<çã@ˆÁo¼_X7ÀCf¼7¹5KÀ­HM¿sxu?¯|>7|¿l-²:¢Oˆ>ÅŠ}?Ã?8¤14¼h:@ˆÁq50ĞpÀ;Ö¶:$4À°GÉ¿º–?‰’D=˜7->¾9ò?iş@¾&±Š?;Á±>Èİ=¦æ¿`±œÀ§*ÀBy÷?¬Á]?­¿{vÑ?cL>To¾>ıÍÒ?Tå¾€/?4ıU>Ä÷“¿o;ğ¿·ùìÀ²ñ ÀC­w@Oı>Eæa¿{vÑ?cL>To¾¿z¥P»æ~a>P5·?¯Ş?<ø¼¼ÈR@@ˆÁp;…€/¿¯õ¶hÀÄ¿º–?‰’D=˜7-¿é$»ÈJÏ<ÒuQ?	nÑ?B}¼éŞŒ@ˆÁo;Šº¾£„®·Ì½ÀÆa¿sxu?…Ğ¾7|>‰Í?v’<5Çh?O=½>ÁİO?(3í¾)òÀ›JÀD/_?`¶‹?	+K¿{vÑ?†¤ô¾Æ>ñW?s9t¼üPœ?F>>Ä÷‘>iÄ‚¾‚…úÀ—ü÷À:ß,?ƒ{Ò?\•¿{vÑ?†¤ô¾Æ¿|ÃñºfŞâ¾"CŠ?/?JÎ*»ŸUg@ˆÁh9Ğso?¥É·yX†ÀÅÙ ¿sxu?…Ğ¾7|¿tU¹¬gØ¾˜Ï¤?Y?RUŒºßö@ˆÁi¹µ]V?Ëx¶b9À¾ƒ¿OÁ?€  ¿y>Qù?z+;Æâ<?]i>³À:?7·h¾"¼uÀ-×À„G?jºC??f+¿aJ?ƒˆ¾å”Ú>ª?w§_» nÌ?VSi>ºÎÀ?AN8¾VûåÀš¼À‚­?‰cî?T´¿aJ?ƒˆ¾å”Ú¿d²Úß:¾èqs?if?XÄ µ®’×@ˆÁg6 5@4â…7pğ²À±€Ø¿OÁ?€  ¿y¿Q(2>@Ì¿¬Y?ô ?_3Tµ H¾@ˆÁk5e?@VO7‹µÀ¥L¿y?wßğ¿OÁ=¤bd?&­¼Zÿå?h§Ä>Ä¸?>Ü¾,¥ÊÀ—À“9æ>Û¯?;ûú¿2Ên?{ïè¿2Êo>J?}¼i<—·?cp>¨Âx?9§%¼™™ÀÀ¢ü?æš?=ï·¿2Ên?{ïè¿2Êo¿5ô1Ñ! ¿5ñ? Å?e¢’    @ˆÁk47Kè@ŒÙ|·úwÀŒÙ„¿y?wßğ¿OÁ¿Xê²¥q¿M»É?i?lµåØ·@ˆÁk5›q½@™6ªµÀx@è¾n?kV¸¿;>fù?uÍ<¾*7?rÙô>~f<>¯‡<¾ë{½À‡á6À¡n(?Ã€>/¸¾å”İ?uè¿aJ=ş?}‰ä½x¾P?lCå>ë1?Üğ¾¡äxÀ‡ªÀœ©Ø?c>áñÖ¾å”İ?uè¿aJ¿ 8"»‹ª|¿]’µ?e+?rŠ´Óëy@ˆÁk3ayñ@­î?·)¼ÀSM¬¾n?kV¸¿;¾¸Î¼>e¿nÅ? |?z°È¼2A@ˆÁi½Œ¾â@¸k‹7]:ºÀ£¹¿ ?Q›È¿nŒ_¼ßB8?T•¿vß?nåÎ>FÉ¬¾o;§¿»„¿ÜÎÀ™³v?8ôĞ¾ò›Ú¾Ş‚?[`H¿y¼@>¡)y?a,Ö¾¶¢|?qj>bB¢¾|ˆ¿¿q2À"—À°Î@ qQ>Ğñ¾7~¿€ ¿y¼@=DÈ;:H~Æ¿´N=R`È9ò\ ¹“…@ˆÁm=Ÿ¿*@Ä÷¾·ÃÉ>Ö|;¾Ş‚?[`H¿y¼@=5¯Œ»!û—¿¿K>øÄŠ;EÕ€:!˜@ˆÁn¼:¦²@Ä{·ŸgÓ?÷ÙQ¹¿ ?Q›È¿nŒ_¼åùW<|E¿Şe>ô2Y<Ñ-:@ß @ˆÁl=…Î]@ÅòáµîXë¾G±$>Ó ?fª ¿uİ§¾Xç½?pÇ€¾‡ô"?pY¾>çL¾¦º¿³?±À€‘½À£Qí¿ œâ¾J¿h=éä:?V‘¿~lŠ¾¼´?cÔ¾Â €?rÀ>00¾Øk¿æä,Àmë>À§ÎÓ¿áÌN¾…ò]=éä:?V‘¿~lŠ=nÑ;?¿ª>ö„•=3(ø;v¥ä@ˆÁm½T @ÆZ­6´\Ò½ËM>Ó ?fª ¿uİ§>°I‡ºlgà¿pXÏ>ş0=‘`º/@ˆÁn9{é@¹Kğ7"(B@ìª?y?vKÈ¿OÅ½l™¯?~¹=¦“ø?h§Æ=£ÖP¿
+‹Ì>˜ÌÁÀ^ª,À˜2¾^Ì!¿”-”>å”İ?tŸØ¿aJ½ø¼Ò?}Ôœ½<Şç?lCá=Û<p¾ër’¾‚ÌÒÀ`õÀŸÒà¿"­J¿ƒæ>å”İ?tŸØ¿aJ>å­]9ıàò¿dÌ?J²=ÍŞô5Ÿ_ñ@ˆÁp5$(à@³Š{5¾µ@2ø,?y?vKÈ¿OÅ?u:    ¿OŒ?®×> tN5.Í@ˆÁn4ş 6@ ‚L·bC@i;¤?OÆ?rØ°¿y;öåh?9=´:?]i=Ğ°¿GÒ>Ô[ŸÀ—Ñ8À‚0‘=½3¾Ğ;¤?2Êr?t’P¿2Êr½?=[Š?cl=o¾ ¿GR>©iKÀ“‹À’ñx½‘O¿|$??2Êr?t’P¿2Êr?5ó    ¿5ô?G‰>ù 5Nåõ@ˆÁn5Nåñ@(ı·t@(ú?OÆ?rØ°¿y?Miu2M€d¿ÇÙ?à9>3m25yé²@ˆÁj5›“Ï@|‚+¶ğï@š-¯?sx|?h¾`¾7€=Ï
+?&¼Í?O=½< `¾çC·½¦eĞÀ›bMÀp^$>ËFë¿(/?`D?n± ¾ê„:=‹¶ö?~„=ª:	?VĞÕ<Æ‡ ¿1^>ä	İÀ™vÀI”>¥pµ¾ßH?`D?n± ¾ê„:?d 2fB¾èqx? çs>Kv8€•t@ˆÁl8üò@6ÿ[7a”<@³“Š?sx|?h¾`¾7€?s8ã    ¾Ÿ¼’>ÿ>fFf7Ş=>@ˆÁk8^Vƒ?øvÃ·fĞà@½i?ÿú?tà0    ½õq‰?{–r¾!’??ˆÌ3   7iÜ‚¿g)À¡+®Àd2ˆ¿	t¶¾ÏòN?y¼>?m÷ˆ¾7€<„?~4½ñ«ø?GcB;›¡€¾m_¿øbÀ¡ÿÀsâŸ¼Æş¾£ M?y¼>?m÷ˆ¾7€?|Ù-    ¾ /t? »í>«š4Åw @ˆÁf6Øî?|é!·¸ş@Ç›R?ÿú?tà0    ?ôx    <™ªf?YÌ>Œ‚€´7]´@ˆÁc6k(Â¾ªX9´W‹e@Ç¹f?sxq?½d>7z¾¦ÍS?lÂé¾Høq?/ÓÙ<Ÿ >ğ¿3¿ƒwÀŸ†Àk}¿š1“>%ÓF?y¼5?|-p>7z¾h(°?u:»¾47ú?7®T;› À>b¨î¿hêãÀ¤|XÀt“•¿cK>€"?y¼5?|-p>7z?|Ù'    > 0	?->™/H´øµ@ˆÁi6DIA¿}B8&ª@Çàª?sxq?½d>7z?rhS    >¤¯?Ä‘>¥ØLµòv@ˆÁl5ÉãÀ·d7	Ë¼@ºå0?Rbÿ?ƒ"\?y¾¢÷F?i/Ë¾†x?!¨~=¢˜?€¿‚ú|À’!ßÀ……j¿¯jÎ?@ä?aJ?‚à,>å”Ö¾Â]?gJÅ¾KÊÓ?(¾+<¾¸À?‡–¿\<§ÀŸ4¦ÀƒÈ*¿Ì±B?õ%?aJ?‚à,>å”Ö?f?º¾üJ>ßÎÅ?Lª>²Z;İ4@ˆÁk;šÿ7À/–Ñ7¬@·RR?Rbÿ?ƒ"\?y?S†»—ÓÒ?àÇ?k>¾‚<¦Uõ@ˆÁm<‡íNÀq/ª·Ï@ èw?y?„@Ì?O½¾Xø?lå¾¡7$?iÔ=£ÖX? 6¿­+şÀˆĞÀå§¿nTW>¦‰L?8t‚?ƒòh?2Êl¾w0«?k†¾6?	$=^'è?!œ÷¿ª|°À«ãÀfÄ¿ˆìn?­M?8t‚?ƒòh?2Êl?2Pm»Ÿí±?7®1?Í>ÊÈ<yê6@ˆÁi<w÷ıÀ’d¶—}@Œê?y?„@Ì?O½?º÷} ?R3^?ñ«>Øz8µÓ1‰@ˆÁo5|ñÀ«Ô7úl_@Rÿş>b«?ÙÄ?u^¾¾S$D?H™z¿ ?Ñ>Ù¶?'½ô¿šW²¿œ“À¦ò­¾¨È ?N€>å”Ô?„%È?aJ¾‹zÌ?bóğ¾¿w?Íµ=Û<p?•¨µ¿ª{âÀ ¬Àš#¸¿R¤?øé»>å”Ô?„%È?aJ>âÕ·:wI
+?e8?å>å#l¶†ß@ˆÁq5‰ªîÀ¶Ù·“©7@.–¤>b«?ÙÄ?u^¾>z¯Ã;Õ?x5H?ÑÛ>ô‡t»)9@ˆÁl¼ƒ!ÿÀ¿»•¶²4??ÂJ|½Œb%?ƒYˆ?sú'>‘;?C%Á¿"q›?Ù>TY?Õ&wÀèëÀä¬ÀŸ‰¸½ƒğ¿=«=ÀOô?ƒš?rÖÂ»bV? #¿]Ø?Q²>4?-B×¿îçq¿mx„À™	>ÑÔ¼ö=ÀOô?ƒš?rÖÂ=Š"è<]ßv?d»?£¨?˜S»ˆX·@ˆÁl½›;ÆÀÆÌ¾6\–>tq°½Œb%?ƒYˆ?sú'<.ïø<§?òg?…s?|;>Š@ˆÁm½˜I†ÀÅì6™c²¾N¯¥¾¶4•?†P8?pÛÒ>3‰ª?b£Ï¾Ü˜?¶W>†¹t>Ä¦ZÀ HÀ#iÀ«w?XóË¾å
+*¾cfÌ?…g ?uf>Öñ?Xr/¿Êƒ?Ş>rÜ?•wGÀ ñÿÀyŒÆÀµ?.-L½+ô¾cfÌ?…g ?uf½Õ÷\<ª7?~—2?{Y?ÏC;YTŞ@ˆÁo¼¸¢LÀÇÖ|5ø¯g¿B²¾¶4•?†P8?pÛÒ¾¢6"¹éä?rÏù?è?;Æ»µÎ@ˆÁo<(bVÀ¼¼¸©‰À Ê¿y?†ê¸?O¿>ªZ?cÅ6¾ ‹?iÔ>Ä¸½+£=¿¼ätÀ†SéÀ›¤?òÒ$¾ª\¾¾êê¾?…¼?`\>ní?gáĞ¾µQ?üİ>ôF½®N¿ÎŠÙÀ‹|öÀ®b¬?¼¿m¾êê¾?…¼?`\¾ñâÀ»Å?a¡?VF?.»`p@ˆÁk<4šÀ±ˆY·2À>dp¿y?†ê¸?O¿¿{k¹@jA?M¢6?0Ò?Ã8Ñ@@ˆÁl8û§Àšoğ7¬ÀzÔw`
+integer `                                            	         	   
+                                                                                             !   "           "   #   %   &   $   $   &   '   (   )   +   +   )   *   ,   -   /   /   -   .   1   2   0   0   2   3   4   5   7   7   5   6   8   9   ;   ;   9   :   <   =   ?   ?   =   >   @   A   C   C   A   B   D   E   G   G   E   F   H   I   K   K   I   J   L   M   O   O   M   N   P   Q   R   P   S   T   P   U   V   P   W   X   P   Y   Z   P   [   \   P   ]   ^   P   _   `   P   a   b   P   c   d   P   e   f   P   g   h   P   i   j   P   k   l   P   m   n   P   o   p   P   q   r   P   s   t   P   u   v   P   w   x   z   {   y   y   {   |   ~      }   }      €   ‚   ƒ         ƒ   „   †   ‡   …   …   ‡   ˆ   Š   ‹   ‰   ‰   ‹   Œ                     ‘   ’   ”   ”   ’   “   •   –   ˜   ˜   –   —   ™   š   œ   œ   š   ›                    Ÿ   ¡   ¢   ¤   ¤   ¢   £   ¥   ¦   ¨   ¨   ¦   §   ©   ª   ¬   ¬   ª   «   ­   ®   °   °   ®   ¯   ±   ²   ´   ´   ²   ³   µ   ¶   ¸   ¸   ¶   ·   ¹   º   ¼   ¼   º   »   ½   ¾   À   À   ¾   ¿   Á   Â   Ä   Ä   Â   Ã   Å   Æ   È   È   Æ   Ç   u   ™   v   v   ™   œ   s   •   t   t   •   ˜   q   ‘   r   r   ‘   ”   o      p   p         ‰   Œ   m   m   Œ   n   k   …   l   l   …   ˆ   i      j   j      „   g   }   h   h   }   €   y   |   e   e   |   f   Å   È   c   c   È   d   a   Á   b   b   Á   Ä   _   ½   `   `   ½   À   ]   ¹   ^   ^   ¹   ¼   [   µ   \   \   µ   ¸   ±   ´   Y   Y   ´   Z   W   ­   X   X   ­   °   U   ©   V   V   ©   ¬   S   ¥   T   T   ¥   ¨   Q   ¡   R   R   ¡   ¤   w      x   x          f   g   P   |   }   f   f   }   g   É   Ê   |   |   Ê   }   -   Ë   *   *   Ë   Ì   d   e   P   È   y   d   d   y   e   Í   Î   È   È   Î   y   )   Ï   &   &   Ï   Ğ   b   c   P   Ä   Å   b   b   Å   c   Ò   Å   Ñ   Ñ   Å   Ä   "   %   Ô   Ô   %   Ó   `   a   P   Á   a   À   À   a   `   Ö   Á   Õ   Õ   Á   À      !   Ø   Ø   !   ×   ^   _   P   ¼   ½   ^   ^   ½   _   Ù   Ú   ¼   ¼   Ú   ½         Ü   Ü      Û   \   ]   P   ¸   ¹   \   \   ¹   ]   İ   Ş   ¸   ¸   Ş   ¹         à   à      ß   Z   [   P   ´   µ   Z   Z   µ   [   á   â   ´   ´   â   µ         ä   ä      ã   X   Y   P   ±   Y   °   °   Y   X   æ   ±   å   å   ±   °      ç   é   é   ç   è   V   W   P   ­   W   ¬   ¬   W   V   ë   ­   ê   ê   ­   ¬      ì   
+   
+   ì   í   T   U   P   ©   U   ¨   ¨   U   T   î   ï   ¨   ¨   ï   ©   	   ğ         ğ   ñ   R   S   P   ¤   ¥   R   R   ¥   S   ò   ó   ¤   ¤   ó   ¥         õ   õ      ô   x   Q   P       ¡   x   x   ¡   Q   ö   ÷           ÷   ¡   N      ù   ù      ø   v   w   P   œ      v   v      w   ú   û   œ   œ   û      M   ü   J   J   ü   ı   t   u   P   ™   u   ˜   ˜   u   t   ş   ÿ   ˜   ˜   ÿ   ™   I      F   F        r   s   P   ”   •   r   r   •   s       ”   ”     •   E     B   B       p   q   P      ‘   p   p   ‘   q     ‘       ‘      A     >   >    	   n   o   P   Œ      n   n      o  
+     Œ   Œ        :   =       =     l   m   P   ˆ   ‰   l   l   ‰   m       ˆ   ˆ     ‰   9     6   6       j   k   P   …   k   „   „   k   j       „   „     …   5     2   2       h   i   P      i   €   €   i   h       €   €        1     .   .    `
+integer `                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                `
+end trilist
+end object
+instance "pCylinder2" "pCylinderShape2"
+light "exclusive" []
+material ["initialShadingGroup"]
+caustic on
+caustic 3
+globillum on
+globillum 3
+transform
+3.66371 -0. 0. -0.
+-0. 1.40453 -0. 0.
+0. -0. 3.66371 -0.
+0.0146798 -6.90912 -0.0327155 1.
+end instance
+instgroup ":MayaTranslatedWorld"
+"defaultLight"
+"pCylinder2"
+"persp"
+end instgroup
+incremental shader "volumeEngine1"
+"adskMayaVolumeEngine" (
+"instances" []
+)
+
+render ":MayaTranslatedWorld" "persp" "miDefaultOptions"
+
