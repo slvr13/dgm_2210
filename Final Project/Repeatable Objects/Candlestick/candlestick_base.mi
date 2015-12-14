@@ -1,0 +1,572 @@
+# Mayatomr 2016.0
+# Maya 2016
+# File /Users/mitch/dgm_2210/Final Project/Repeatable Objects/Candlestick/candlestick.mb
+
+
+min version "3.13"
+link "AdskShaderSDK.so"
+link "MayaShaders.so"
+link "mayabase.so"
+link "base.so"
+link "coreutil.so"
+$include "AdskShaderSDK.mi"
+$include "MayaShaders.mi"
+$include "mayabase.mi"
+$include "coreutil.mi"
+$include "base.mi"
+$include "object_light_phen.mi"
+
+data "maya_scene:colortransformdata"
+"maya_color_transform_data" (
+"magic" 1298233697,
+"colorTransformData" "<ProcessListSet>
+<ProcessListEntry>
+<TransformId id=\"NativeViewingTpl_scenelinearRec709sRGBsRGBgamma_FORWARD\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"351a70dd-2a44-4903-83be-9d9bac585356\" name=\"scene-linear Rec 709/sRGB\">
+   <Description>scene-linear Rec 709/sRGB primaries to ACES primaries</Description>
+   <Description>Apply gamma (in Rec 709 primaries) to scene-linear values -- no tone-mapping.</Description>
+   <InputDescriptor>scene-linear Rec-709/sRGB RGB</InputDescriptor>
+   <OutputDescriptor>gamma-encoded RGB (Rec 709 primaries)</OutputDescriptor>
+   <Info>
+      <Release>2016.0.pr51</Release>
+      <Category>
+         <Tags>
+            <SceneLinearWorkingSpace></SceneLinearWorkingSpace>
+            <Input></Input>
+            <Maya></Maya>
+         </Tags>
+      </Category>
+      <OutputSpace>
+         <ImageState>scene</ImageState>
+         <ShortName>ACES</ShortName>
+         <ID>1</ID>
+      </OutputSpace>
+      <InputSpace>
+         <ImageState>scene</ImageState>
+         <ShortName>scene-linear Rec 709/sRGB</ShortName>
+         <ID>3bd912cf-1d55-3335-bff9-af283bcf2042</ID>
+      </InputSpace>
+      <Copyright>Copyright 2015 Autodesk, Inc.  All rights reserved.</Copyright>
+   </Info>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+     0.43957567      0.38391259      0.17651172
+    0.089600384      0.81471413      0.09568546
+    0.017415483      0.10873435      0.87385017
+      </Array>
+   </Matrix>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Description>ACES to Rec 709 matrix</Description>
+      <Array dim=\"3 3 3\">
+      2.5219347      -1.1370239     -0.38491082
+    -0.27547944       1.3698289    -0.094349548
+    -0.01598287     -0.14778924       1.1637721
+      </Array>
+   </Matrix>
+   <ExposureContrast inBitDepth=\"16f\" outBitDepth=\"16f\" style=\"linear\">
+      <ECParams exposure=\"0\" contrast=\"1\" pivot=\"1\" />
+      <DynamicParameter param=\"EXPOSURE\" />
+      <DynamicParameter param=\"CONTRAST\" />
+   </ExposureContrast>
+   <Gamma inBitDepth=\"16f\" outBitDepth=\"12i\" style=\"moncurveRev\">
+      <GammaParams gamma=\"2.4\" offset=\"0.055\" />
+   </Gamma>
+</ProcessList>
+</ProcessListEntry>
+<ProcessListEntry>
+<TransformId id=\"NativeViewingTpl_scenelinearRec709sRGBsRGBgamma_REVERSE\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"9b4059a7-f62b-438d-aeac-580b1da7d4d0\" name=\"Inverse of: [scene-linear Rec 709/sRGB]\" inverseOf=\"351a70dd-2a44-4903-83be-9d9bac585356\">
+   <Description>Inverse of: [scene-linear Rec 709/sRGB primaries to ACES primaries]</Description>
+   <Description>Apply gamma (in Rec 709 primaries) to scene-linear values -- no tone-mapping.</Description>
+   <InputDescriptor>gamma-encoded RGB (Rec 709 primaries)</InputDescriptor>
+   <OutputDescriptor>scene-linear Rec-709/sRGB RGB</OutputDescriptor>
+   <Gamma inBitDepth=\"12i\" outBitDepth=\"16f\" style=\"moncurveFwd\">
+      <GammaParams gamma=\"2.4\" offset=\"0.055\" />
+   </Gamma>
+   <ExposureContrast inBitDepth=\"16f\" outBitDepth=\"16f\" style=\"linearRev\">
+      <ECParams exposure=\"0\" contrast=\"1\" pivot=\"1\" />
+      <DynamicParameter param=\"EXPOSURE\" />
+      <DynamicParameter param=\"CONTRAST\" />
+   </ExposureContrast>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+     0.43957567      0.38391262      0.17651172
+    0.089600392      0.81471419     0.095685467
+    0.017415484      0.10873436      0.87385017
+      </Array>
+   </Matrix>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+      2.5219347      -1.1370239     -0.38491082
+    -0.27547944       1.3698291    -0.094349548
+   -0.015982868     -0.14778924       1.1637721
+      </Array>
+   </Matrix>
+</ProcessList>
+</ProcessListEntry>
+<ProcessListEntry>
+<TransformId id=\"NativeMixingTpl_scenelinearRec709sRGB_identity_RGB_FORWARD\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"994013a1-8edb-4e1f-98b0-02e805a9f34a\" name=\"Stock Identity Transform\">
+   <Matrix id=\"9c94db8f-9a3d-4054-b9e3-9ab44b2d0760\" name=\"identity\" inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+              1               0               0
+              0               1               0
+              0               0               1
+      </Array>
+   </Matrix>
+</ProcessList>
+</ProcessListEntry>
+<ProcessListEntry>
+<TransformId id=\"NativeMixingTpl_scenelinearRec709sRGB_identity_RGB_REVERSE\"/>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ProcessList version=\"1.3\" id=\"58468240-c684-44f7-b2ef-51023daa1c27\" name=\"Inverse of: [Stock Identity Transform]\" inverseOf=\"e2eaa92d-4656-412e-99fd-ac7367f34300\">
+   <Description>Inverse of: []</Description>
+   <Matrix inBitDepth=\"16f\" outBitDepth=\"16f\">
+      <Array dim=\"3 3 3\">
+              1               0               0
+              0               1               0
+              0               0               1
+      </Array>
+   </Matrix>
+</ProcessList>
+</ProcessListEntry>
+</ProcessListSet>
+"
+)
+
+options "miDefaultOptions"
+object space
+desaturate off
+colorclip raw
+premultiply on
+dither on
+gamma 1.
+acceleration bsp2
+task size 0
+contrast 0.1 0.1 0.1 0.1
+samples -2 0
+filter gauss 3. 3.
+jitter 0.
+samplelock off
+scanline off
+trace on
+trace depth 4 4 6
+shadow segments
+shadowmap detail
+shadowmap rebuild on
+"shadowmap pixel samples" 3
+caustic off
+globillum off
+finalgather off
+lens on
+volume on
+geometry on
+displace on
+displace presample on
+output on
+merge on
+autovolume off
+hair on
+pass on
+face both
+traversal adskTraversal
+"ambient occlusion" off
+"ambient occlusion cache" off
+"ambient occlusion cache density" 1.
+"ambient occlusion cache points" 64
+"ambient occlusion rays" 64
+"contrast all buffers" off
+"environment lighting caustic photons" 0
+"environment lighting global illum photons" 0
+"environment lighting mode" "off"
+"environment lighting quality" 0.2
+"environment lighting resolution" 512
+"environment lighting scale" 1. 1. 1. 0.
+"environment lighting shader samples" 2
+"environment lighting shadow" "transparent"
+"finalgather normal tolerance" 25.842
+"geom displace motion factor" 1.
+"gi" off
+"gi depth" 0
+"gi filter" 1.
+"gi freeze" off
+"gi gpu" "off"
+"gi gpu depth" 3
+"gi gpu devices" 0
+"gi gpu filter" 1
+"gi gpu passes" 4
+"gi gpu presample density" 1.
+"gi gpu presample depth" 2
+"gi gpu rays" 34
+"gi rays" 100
+"importon" off
+"importon density" 1.
+"importon merge" 0.
+"importon trace depth" 0
+"importon traverse" on
+"iray" off
+"irradiance particles" off
+"irradiance particles env" on
+"irradiance particles env rays" 256
+"irradiance particles env scale" 1
+"irradiance particles indirect passes" 0
+"irradiance particles interpolate" 1
+"irradiance particles interppoints" 64
+"irradiance particles rays" 256
+"irradiance particles rebuild" on
+"irradiance particles scale" 1.
+"light importance sampling" "all"
+"light importance sampling precomputed" off
+"light importance sampling quality" 1.
+"light importance sampling resolution" 1.
+"light importance sampling samples" 4
+"light relative scale" 0.31831
+"mila clamp level" 1.
+"mila clamp output" off
+"mila diffuse detail" off
+"mila diffuse detail distance" 10.
+"mila diffuse quality" 1.
+"mila glossy quality" 1.
+"mila quality" 1.
+"mila scatter quality" 1.
+"mila scatter scale" 1.
+"mila use max distance inside" on
+"progressive" off
+"progressive max time" 0
+"progressive subsampling size" 4
+"rast motion factor" 1.
+"rast transparency depth" 8
+"rast useopacity" on
+"ray differentials" on
+"samples error cutoff" 0. 0. 0. 0.
+"samples max" 100.
+"samples min" 1.
+"samples per object" off
+"samples quality" 0.25 0.25 0.25 0.25
+"shadowmap pixel samples" 3
+"shutter full close" 0.8
+"shutter full open" 0.2
+"shutter shape function" "none"
+"trace camera clip" off
+"trace camera motion vectors" off
+"unified sampling" on
+"maya allocate temp data on heap" off
+"maya custom alpha" on
+"maya custom depth" off
+"maya custom label" off
+"maya filter size compute" on
+"maya filter size default" 0.0001
+"maya reflection blur limit" 1
+"maya refraction blur limit" 1
+"maya render pass" 0
+"maya shader glow" on
+"maya shader glow buffer" "mayaGlow"
+"maya shadow limit" 3
+state [
+"maya_state" (
+"colorTransformData" "maya_scene:colortransformdata"
+)
+,
+"adskFrameBufferState" (
+)
+]
+end options
+light "defaultLightShape"
+"adskMayaDirectionalLight" (
+"color" 1. 1. 1.,
+"intensity" 1.,
+"useRayTraceShadows" off,
+"shadowColor" 0. 0. 0.,
+"shadowRays" 1,
+"rayDepthLimit" 1,
+"emitDiffuse" on,
+"emitSpecular" on,
+"useDepthMapShadows" off,
+"useLightPosition" off,
+"lightAngle" 0.
+)
+direction 0. 0. -1.
+end light
+instance "defaultLight" "defaultLightShape"
+transform
+-0.722072 -0.386506 0.573782 0.
+0.137161 0.732938 0.666325 0.
+-0.678085 0.559835 -0.47622 0.
+-5.7089 1.43864 -11.5934 1.
+end instance
+shader "shaderGlow1:perspShape"
+"maya_shaderglow" (
+"glowType" 1,
+"haloType" 1,
+"glowIntensity" 1.,
+"glowColor" 1. 1. 1.,
+"glowSpread" 0.05,
+"glowEccentricity" 0.1,
+"glowRadialNoise" 0.,
+"glowStarLevel" 0.,
+"glowOpacity" 0.,
+"glowRingIntensity" 0.,
+"glowRingFrequency" 0.5,
+"glowFilterWidth" 1,
+"haloIntensity" 1.,
+"haloColor" 1. 1. 1.,
+"haloSpread" 0.3,
+"haloEccentricity" 0.1,
+"haloRadialNoise" 0.,
+"haloStarLevel" 0.,
+"haloOpacity" 0.,
+"haloRingIntensity" 0.,
+"haloRingFrequency" 0.5,
+"haloFilterWidth" 1,
+"quality" 0.5,
+"threshold" 0.,
+"radialFrequency" 0.5,
+"starPoints" 4.,
+"rotation" 0.,
+"autoExposure" on
+)
+
+shader "volumeEngine1"
+"adskMayaVolumeEngine" (
+)
+
+data "perspShape:fbdata"
+"adskFrameBufferData" (
+"magic" 1178760550,
+"nonMaterialPassFrameBufferNames" [],
+"frameBufferInfo" [],
+"frameBufferTypeCounts" [
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0
+]
+)
+
+camera "perspShape"
+data "perspShape:fbdata"
+framebuffer "mayaGlow"
+datatype "rgba_h"
+filtering on
+user on
+output = "shaderGlow1:perspShape"
+framebuffer "mayaColor"
+datatype "rgba_h"
+filtering on
+primary on
+filetype "iff"
+compression "zips"
+filename "/Users/mitch/dgm_2210/Final Project/Repeatable Objects/Chair/images/base/candlestick.iff"
+resolution 960 540
+aspect 1.77778
+aperture 1.41732
+frame 1 1.
+clip 0.1 10000.
+focal 1.37795
+volume = "volumeEngine1"
+end camera
+instance "persp" "perspShape"
+visible off
+shadow 12
+transparency 12
+reflection 12
+refraction 12
+caustic off
+globillum off
+finalgather off
+transform
+-0.943223 -0.107803 0.314181 -0.
+-0. 0.945868 0.324551 0.
+-0.332161 0.306124 -0.892164 -0.
+-0.476532 -3.59575 -12.4865 1.
+end instance
+data "pCylinderShape1:vxdata"
+"maya_vertexdata" (
+"magic" 1298749048,
+"uvs" [{
+"name" "map1",
+"type" 2,
+"size" 3,
+"offset" 0
+}
+]
+)
+
+shader "lambert1"
+"adskMayaLambert" (
+"color" 0.5 0.5 0.5,
+"refractionLimit" 6,
+"refractiveIndex" 1.,
+"refractions" off,
+"diffuse" 0.8,
+"ambientColor" 0. 0. 0.,
+"transparency" 0. 0. 0.,
+"incandescence" 0. 0. 0.,
+"translucence" 0.,
+"translucenceFocus" 0.5,
+"translucenceDepth" 0.5,
+"opacityGain" 0.,
+"glowIntensity" 0.,
+"hideSource" off,
+"surfaceThickness" 0.,
+"shadowAttenuation" 0.5,
+"transparencyDepth" 0.,
+"lightAbsorbance" 0.,
+"chromaticAberration" off,
+"normalCamera" 1. 1. 1.,
+"irradiance" 0. 0. 0.,
+"irradianceColor" 1. 1. 1.,
+"refractionBlur" 0.,
+"refractionBlurLimit" 1,
+"refractionRays" 1,
+"scatterColor" 0.5 0.5 0.5,
+"scatterRadius" 0.,
+"scatterAccuracy" 97,
+"scatterFalloff" 0,
+"scatterLimit" 1,
+"scatterCache" 0,
+"matteOpacityMode" 2,
+"matteOpacity" 1.,
+"FrameBufferWriteOperation" 1,
+"FrameBufferWriteFlags" 0,
+"FrameBufferWriteFactor" 1.
+)
+
+shader "lambert1:shadow"
+"adskMayaFastShadow" (
+)
+
+material "initialShadingGroup"
+"adskMayaShadingEngine" (
+"surfaceShader" = "lambert1.outColor",
+"cutAwayOpacity" 0.,
+"customShader" off
+)
+shadow = "lambert1:shadow"
+end material
+object "pCylinderShape1"
+visible on
+shadow 3
+transparency 3
+reflection 3
+refraction 3
+finalgather on
+finalgather 3
+face both
+tagged
+data "pCylinderShape1:vxdata"
+trilist vertex 372 p n t 2 b 2 triangle 540
+scalar `?sx|¿€ ¾7€>¡m­?qTã½ßw3   >b¼:ÀÆ9×@ 1Ü@_º‘@h    @º£@?OÆ¿€ ¿y>{Æ¶?sUÀ¾BhN3   >30ôÀ¤.ô@ 1Ü@»ˆ%@}H    @›fH?0Vƒ¿qó¾ğ¥×>”"ú?nTŞ¾cöÑ<³¡°>4À­è’@<  @’K@QÛë    @‰›=?OL2¿qó¾}:>º&?lR¨¾ <³¡°>cR(ÀÇÄ @<†À@HT?ÜĞÇ    @¢¶b?y¿€ ¿OÅ>&Bh?u5ø¾r§3   >¥¨Àe@#ê@ü2Ã@©Æ¸¼Å+@VˆÄ? ó¿qó¿%œ•>GY?pdĞ¾‘/	<³¡°>m°À†7@C^@ÕÑ@“(½Ûì×@;‘>7¿€ ¿sxy=£\?vd«¾„Ôo3   =¨4´¿çB•@Dá­A-U¿@ÅCÏ¾:d–?ï„>†µÌ¿qó¿B°+=Å/?qÉö¾ Ô<¨ÜĞ=©
+œÀÇ@YW¢Ax@¯Í¾Å‘Ï?;É0    ¿€ ¿€ ³\»Q?vÈõ¾ˆ"†3   =<PµÀ†ß@?WAÑâ@Ôú–    ?†î²˜#L¿qó¿Lµ³°§?rD¾¥oº<JKÀ=<P¿jG@p<ìA4\Ö@À¥¾õØ¾à*    ¿€ ¿€ ³\»Q?vÈõ¾ˆ"†3   ?vÜ;8 ¾;@?WAÑß@Ôú{    ¿†î$¾7¿€ ¿sxv½£g?vd«¾„Ôu3   ?jùh?çBV@Dá»A-UÏ@ÅCÄ>:do¿ï¾†µÎ¿qó¿B°(½Å/¯?qÉö¾ Ô†<¨ÜÀ?jŞ¬@Çƒ@YW¤Au@¯·>Å‘Ê¿;É²˜#L¿qó¿Lµ³°§?rD¾¥oº<JKÀ?vÜ:?jF›@p<úA4\â@À¤ş>õ×è>à5¿y¿€ ¿OÂ¾&Bp?u5õ¾r§.3   ?_”@eM@#ğ@ü2°@©Æ <Å@ÀVˆ¦¿ ò¿qó¿%œ“¾Gf?pdÑ¾‘/<³¡°?^ä@†@C^@ÕÑ@“'=Ûí4À;¿OÁ¿€ ¿y¾{ÆÆ?sU¿¾Bh^3   ?S3Á@¤.è@ 1Ü@»ˆ5@}H    À›f[¿0V~¿qó¾ğ¥Ó¾”#?nTÜ¾cöá<³¡°?Rû:@­è‚@<  @’Jş@QÛŞ    À‰›8¿sxu¿€ ¾7|¾¡m´?qTá½ßw¼3   ?GPğ@Æ9Ï@ 1Ü@_ºA@k    Àº£(¿OL/¿qó¾}5¾º&‡?lR¥¾ '<³¡°?G+r@ÇÄ@<†¿@HY?ÜĞï    À¢¶Z¿€ ¿€     ¾¯ôµ?phb1ı~3   ?;n@Óì@ 1Ü·¥’2w    ÀÀÔl¿Y÷0¿qó³   ¾ÈñQ?kuĞ°êî©<³¡°?;n@Î˜¤@DÆ8µ½²’6ù    ÀT“¿sxu¿€ >7|¾¡m±?qTá=ßwÈ3   ?/‹J@Æ9Â@ 1×À_ºˆÀq5³Àº£4¿OL/¿qó>},¾º&„?lR¥> +<³¡°?/°Æ@ÇÄ@<†ÀÀH´¿ÜÑ5+0YÀ¢¶q¿OÀ¿€ ?y¾{Æ¿?sU½>Bho3   ?#¨w@¤.á@ 1ÍÀ»ˆÀ}Gñ    À›f>¿0V~¿qó>ğ¥Ï¾”"ş?nTÛ>cöä<³¡À?#á @­èƒ@<  À’KÀQÛË5‰%pÀ‰›2¿y¿€ ?O¿¾&Bo?u5ö>r§<3   ?Å¤@`b@ 1ÍÀ÷À¨÷t    ÀZ‹R¿ ğ¿qó?%œ’¾G`?pdÏ>‘/<³¡À?÷¦@ƒù@<¾ıÀÎ‘äÀ|    ÀG¾7|¿€ ?sxs½£]?vd©>„Ôw3   ?âÒ?¼*Ë@ 1ÍÁ	ÀÂé)    ¿ÒÙï¾†µÌ¿qó?B°%½Å/ ?qÉö> Ô‰<³¡À?ı@6é@<Õ€À÷ †À¨     ¿Òú…³   ¿€ ?€ 2î¡ ?vÈõ>ˆ"‡3   >ÿÿş7’®@ 1ÍÁ2òÀÔúo    5(ÑÑ³9?¿qó?Lµ3—_?rD>¥o¹<³¡À?   6Ñ”@3ÚpÁ À¾"µ-ô6ŠÎ>7y¿€ ?sxr=£c?vd«>„Ôs3   >è:W¿¼*!@ 1×Á	,ÀÂéµW6?ÒÙï>†µÉ¿qó?B°$=Å/ª?qÉø> Ô<³¡°>èßÀ7@<Õ†À÷ ‘À§ÿïµ‡?Òú‚?y¿€ ?O¾>&Bo?u5÷>r§$3   >Ğt°À`bn@ 1ÜÀ÷œÀ¨÷^    @Z‹A? í¿qó?%œ>Gd?pdĞ>‘/<³¡°>Ğ¨Àƒü@<¿ÀÎ‘îÀ|    @G{?O½¿€ ?y>{ÆÀ?sU½>BhX3   >¸¯À¤/@ 1ÜÀ»ˆÀ}H!    @›f]?0Vz¿qó>ğ¥Í>”#?nTİ>cöÛ<³¡°>¸=üÀ­èƒ@< ¡À’KÀQÛï    @‰›A?sxq¿€ >7z>¡m³?qTã=ßwÃ3   > ékÀÆ9Ö@ 1ÜÀ_ºGÀs    @º£1?OL+¿qó>}&>º&…?lR¥> /<³¡°> pÀÇÄ@<†ÁÀHt¿ÜÑ    @¢¶f?€  ¿€     >¯ô­?phc4/à3   >‰#ÄÀÓì@ 1Û´ê”1¶ÂõÀ    @ÀÔ_?Y÷,¿qó³   >ÈñL?kuÑ4Ş—<³¡°>‰#ÆÀÎ˜©@DÆ5¶ˆ\A¶¡ëâ    @T“?³Ñ·?}×x¾éµ½ü,õ?}Øh=#ß¤?JJq>	º¿IÇŸ>w*Àü¦¬À½M ¿(­W¿Wq?˜ö?}×x¿^DÅ½Öƒj?}Øj=›Úg?VÕÚ>"¥ê¿›qE>İ¾4ÀçFCÀÒ­~¿U]¿¢Eø?;Ï?rR0¿sŞ½_üP?j="¼+?J@>hëÒ¿;¡á>¢?`Á°‘ÁÂİ¾È	Ú¿QO&?\Èú?rR0¾yŒ½ƒ§É?j<«$?C”>[±¿@­>8û¹Á›ÁØr¾ğb°¿ïØ?^DÎ?}×x¿˜ö›½›Úg?}Øj=Öƒk?`Êr>JxF¿•Pè?•ÀÍöÇÀëüæ¾ÈOF¿œ%†?sä?rR0¿;Ïš½"¼+?j=_ü9?O8ü>}†¶¿(5>ØÁÁmc¾Œ>¿=àå>éµ	?}×x¿³Ñ´½#ß§?}Øj=ü,ğ?g.¾>|¥ô¿)³È?,ÅJÀºcBÀÿn¾D°¬¿7]<>y?rR0¿\Èø¼«?j=ƒ§Î?R‡§>‹¾¾¾ Êg>ø×ÀÿøÁêk¾ïG¾Ì ;3ğ—?}×x¿½³°;	œ?}Øj>“™?ib”>š"¼=ÕA§?3‚{À´ÜÁöç<Óò&=Oå|3“³B?rR0¿h%©°0Œ¾?j=ŠnC?S«e>š"¼>)
+Ä? ™¬Àü¤?Á!@<Úç=¤ÑÕ¾éµ?}×x¿³Ñ´=#ß´?}Øj=ü,û?g.¾>µò?Wq?(­bÀ½MÀü¦ >w?IÇõ¾yŒ?rR0¿\Èø<«.?j=ƒ§Î?R‡¨>¨†¼?é>ğb|ÁØ7Á›.>8ûj?BÎ¿^DÅ?}×x¿˜ö™=›Úm?}Øj=Öƒh?`Êt>Ï	V?¢Eş?UWÀÒ­ÀçF/>İ¾:?›q.¿sŞ?rR0¿;Ï–="¼7?j=_üN?O8ú>µ‚?QJ•>È	ÆÁÂŸÁ°Ï>¢?j?;¤è¿˜ö™?}×x¿^DÃ=Öƒo?}Øj=›Ú]?VÕÚ>âò†?œ%¸>ÈOEÀëüíÀÍö¾?—?•P¹¿;Ï˜?rR0¿sİ=_üS?j="¼"?JB>¿Ï?=İM>ŒoÁm=ÁM>ØO?(9!¿³Ñ±?}×x¾é´ı=ü,ò?}Øj=#ß¯?JJp>ï»?7]„>D°ÀÿnÀºc5?,ÅC?)³u¿\Èö?rR0¾y‡=ƒ§Í?j<«*?C”‘>Ælì>Ì›>ïŒÁê=Àÿ•>ø×„> Ó¿½±?}×x48  >“˜?}Øj0»	?<b>ô"Æ½Oæú¼Óñ|ÁöãÀ´Û?3‚x½ÕBË¿h%¦?rR03è  =ŠnE?j°Mù“?<b>È´f½¤Ó¨¼ÚçLÁ!=Àü¤â? š ¾(ú[¿³Ñ±?}×x>éµ=ü,ñ?}Øj½#ß¸?.z¬>ï» ¿IÇÚ¾wAÀü¦·À½M ?(­N¿Wr'¿\Èö?rR0>yŒ=ƒ§Ì?j¼«'?50“>Ælì¿@­¾8ü$Á›FÁØ}>ğc-¿å1¿˜ö˜?}×x?^DË=Öƒk?}Øh½›Úk?!ïD>âò‚¿›q#¾İ¾4ÀçF.ÀÒ­x?UU¿¢F ¿;Ï–?rR0?sâ=_üL?j½"¼-?.²ß>¿Ï’¿;¡2¾¢?åÁ°ãÁÂİ>È
+v¿QFW¿^DÃ?}×x?˜ö™=›Úg?}Øi½Öƒp?ú«>Ï	X¿•PÛ¿ŒÀÍö¹Àëüä>ÈOM¿œ%–¿sİ?rR0?;Ï˜="¼0?j½_ü\?)Œ'>µ‚¿(4"¾ØşÁxÁm`>ŒÂ¿=Û†¾éµ?}×x?³Ñ³=#ß°?}Øh½ü,ó?–^>µò¿)³ç¿,Å;Àºc2Àÿw>D°u¿7]Ü¾y‹?rR0?\È÷<«&?j½ƒ§Î?&=z>¨†¿¾ È¾øØ#ÀÿüÁêt>ğ¾Ìå3’¬?}×x?½²²õ|¢?}Øh¾“›?b‹>š"À=Õ?}¿3‚|À´İÁöé¼ÓğĞ=OêË33S­?rR0?h%¨/kfX?j½ŠnQ?%»>š"¼>)¿ š;Àü¥WÁ!&¼Úçì=¤Òr>éµ?}×x?³Ñ²½#ß¸?}Øi½ü,ù?–]>|¥ô?Wq¿(­TÀ½LùÀü¦¢¾w,?IÇÒ>y‹?rR0?\È÷¼«-?j½ƒ§×?&={>‹¾¾?ë¦¾ğcaÁØºÁ›"¾8üj??!?^DÃ?}×x?˜ö˜½›Úh?}Øi½Öƒm?ú¬>JxN?¢F¿UPÀÒ­nÀçF;¾İ¾1?›qK?sİ?rR0?;Ï—½"¼2?j½_üX?)Œ&>}†º?QL ¾È
+ˆÁÃ)Á°®¾¢?Ú?;Ÿ^?˜ö—?}×x?^DË½Öƒn?}Øi½›Ú`?!ïB>"¥ò?œ%‡¾ÈOWÀëüèÀÍöÄ¿?•Q?;Ï–?rR0?sà½_üP?j½"¼!?.²à>hëÎ?=Ş|¾Œ¬ÁmŠÁ)¾ØÂ?(0	?³Ñ±?}×x>éµ½ü,ö?}Øj½#ß²?.z¬>	º?7]r¾D°šÀÿgÀºc>¿,ÅB?)´N?\Èô?rR0>yŒ½ƒ§Ê?j¼«'?50’>[± >Ìæ¾ï›Áê€ÀÿX¾ø×³> ¾¯?½±?}×x48  ¾“˜?}Øj´÷Ğ?<b> Ej½Oâ±<ÓğÀÁöäÀ´Ù¿3‚z½Õ<_?h%¦?rR03è  ½ŠnA?j´:Qà?<b>W"&½¤ÒU<ÚænÁ!BÀü¤¹¿ ™í¾)%¿%N.¿[P¾</‘¿osQ>'_¾£¥,=G&h?F×Ä?:±@¡ö>¼Aòß? k,    ÀŒğş¿-Ïù¿[P³˜  ¿|„a>(V–²işn=G&h?;n?@za@¡÷ñ6¢¯        Àƒé·¿M‰ì¿K ³  ¿3¨°¿6^œ3_=±!¤?;nÀ*g@»[Å¾«i8>*Ì‚    Àª–¿Cz ¿K ¾~Y¿(ì¿7«€¾dë=±!¤?G(èÀš˜Ê@¹À!€«@¨Î    À¤Q¿ ¿[P¾²ù«¿Ié«=ğ[û¿{B=G&h?Ri ?%¸@¡÷A¼à¿’@)G    ÀrA4¿&HÍ¿K ¾ñ ¿]¿:Ñ ¾Ó²=±!¤?R÷¤À}Âª@¹äÀ…Ğw@`?µ¦TÀ‡%“¾ÌT(¿[P¾öVœ¿Ö\=™•¿R8=G&h?^Aƒ? V@¡ùš½ é@nø¶>XıHÀ3u5¾ñ ¿K ¿&HÍ¾Ä5†¿>Cy¿e™=±!¨?^áÖÀ'E5@³xÀ©3M@’ú=GåéÀ:#Ü¾VØ¿[P¿ËF¾–‚]=%<X¿tx–=/(?jnğ>˜jô@~d½9i@B?	ùa¿Ä¹F¾~Y¿K ¿Cz¡¾I—¿@À ¿ Ë3=´.ü?jİ‡¿y+@Ÿ:_ÀªŒ÷@§8>
+Á¿´O³$`¿[P¿>Ö´<1²<ßs¿ç=@?vÜ;=ß9 @”’Š½:Øw@œwX?2*¿
+Dş²¸áı¿K ¿M‰ğ´ï¿A¤H¿'r¸=¯×X?vÜ;6wIh@?‚Àúô@©qß>Mû×¿‡ò	>VØ	¿[P¿ËG>–‚Q=%<K¿tx˜=/(=¬ˆt¾˜jé@~d½9k­@B#¿	ù,?Ä¹?³$`¿[P¿>Ö´<1²<ßs¿ç=H=<P½ß9Ç@”’…½:Õ@œwd¿23?
+Dç²¸áı¿K ¿M‰ğ´ï¿A¤H¿'r¸=¯×\=<P?ø@– <À±t@»7<È¡?YÿÁ>~T¿K ¿Cz£>I…¿@À¡¿ Ë3=´/=©À?ÎÖ9@£ ŒÀ¨ì	@£¾XÇ_?ëbj>ÌT)¿[P¾öV ?ÖV=™˜¿R8=G&h>ùô¿ «@¡ù½ u@nø«¾Xıp@3u(>ñ ¿K ¿&HĞ>Ä5¿>C{¿e˜=±!¤>x@LÕ9@³*À›F‹@ŒJ¾½‹@O*?¿[P¾²ù¯?Ié«=ğ[å¿{D=G&h>6[x¿%¸¨@¡÷C¼àÇZ@)]    @rAP?&HĞ¿K ¾ñ ?[¿:Ñ#¾Ó²=±!¤>4!r@p!@¹&oÀcè€@L²d    @`?%N2¿[P¾</“?osU>'b¾£¥=G&h>d ğ¿:Ú@¡ö>¼B×? jø    @Œğı?Cz£¿K ¾~^?(ì¿7«„¾dÀ=±!¤>c\V@¢Rn@¹Ö¿ä‹]?Ô™d    @¨Rô?-Ïô¿[P³˜  ?|„b>(V†5¢õË=G&h>‰#Ä¿@zC@¡÷ñ6¢Å¶³|>    @ƒéÍ?M‰ê¿K ³  ?3¨­¿6^Ÿ5U=±!¤>‰#Ä@*m@»[Ä>«i¥¾*Í´    @ªœ?%N*¿[P></€?osM>'l>£¥7=G&h>Ÿ÷¿:‘@¡ö@<B E¿ k8    @Œğş?Czš¿K >~P?(ì¿7«‚>dı=±!¤> ™]@š˜Î@¹@!€œÀ¨Õ    @¤Pü?û¿[P>²ù¤?Iéª=ğ\?{C=G&h>·Ì¿%¸T@¡÷A<àµ™À)L    @rA9?&HÈ¿K >ñ ?^¿:Ñ >Ó²=±!¤>¸6Ó@}Âª@¹â@…ĞxÀ`M    @‡%¤>ÌT ¿[P>öV“?Ö^=™ƒ?R8
+=G&h>ÎÊ¿ D@¡ø~= ÖÀmÇõ    @3X>ñ ¿K ?&HÊ>Ä5†¿>Cz?e—=±!¤>Ğ5@,‘‹@¹'Y@®`À“1¤    @:ì>VØ¿[P?Ë@>–‚\=%<D?tx–=G&h>ç%i¾œÀ7@¡øò=>­‰ÀŒºöµ«„?Ë³¥>~N¿K ?Cz›>I¿@À? Ë3=±!¤>è–?ä<@¹.Ï@ÆYéÀ¨üµ1|'?¯„³{H¿[P?>Ñ4‰K<ßsX?ç=G&p>ÿÿş·'r¦@¡ù=K«òÀ›±ˆµÔ>h5W§³C5õ¿K ?M‰ê4¬¿A¤H?'rº=±!¤>ÿÿú¾ß-&@µÕc@Ñ`øÀ´¿µÄ÷¾gß¾VØ¿[P?ËA¾–‚V=%<p?tx—=G&p?mJ>œ¿x@¡øö=>²SÀŒ»5N«³¿Ë³°¾~V¿K ?Cz¾IŒ¿@À? Ë3=±!¨?ş±¿ê•@¹5«@¿3êÀ¤ ™    ¿İˆq¾ÌT%¿[P>öV•¿ÖY=™°?R8=G&p?šµ? Ä@¡ø= OÀmÇî4œšÀ3X¾ñ ¿K ?&HÊ¾Ä5†¿>Cx?e˜=±!¤?úbÀS¹a@¹1.@ ÜÀŒo    ÀNí¿ÿ¿[P>²ù¤¿Iéª=ğ\?{F=G&h?$s?%¸&@¡÷C<à¶¡À)L6&ŸÀrA7¿&HÍ¿K >ñ ¿]¿:Ñ>Ó¶=±!¨?#ä”Àp@¹&r@cèwÀL²X55L©ÀU¿%N.¿[P></ƒ¿osO>'_>£¥1=G&h?0t?:˜@¡öA<BZ¿ k4    ÀŒñ ¿Cz ¿K >~P¿(ì¿7«>dõ=±!¤?/³PÀ¢Rj@¹Ó?ä‹x¿Ô™‹5¨‘RÀ¨Rä¿ƒµ@¾Öp¾«-˜¿&íÑ¿:[_¾Xô1=şá(?G¯Àœ¢@“®@¿§vT@ªR    ÀÙ85¿Š|j¾Öp2€  ¿/„ı¿:[_34‡=şá(?;nÀ¡À™@“®8>_i_=Æ²    Àåíã¿œ‡¾zCÀ3   ¿yY¾gê±EpO>+‚À?;n¿EF„@KĞ>H·™=-“º    Àıƒ>¿”l)¾zCÀ¾ÀæÌ¿m$ä¾gê|¾š>+‚À?GPğ¿P¤@KÎ<Ñz«@BG    Àğ¯¢¿`8¾Öp¿"ÌÒ¿ÿ¿:[]¾ÎUå=şá(?RËÚÀˆc@“³éÀ/æv@ˆS<    À¶hé¿|‚ğ¾zCÀ¿7uÕ¿Iº¾gêv¿#>+‚À?S3Â¿QcÙ@K’¾4D@•ó}    ÀÌã¿"ÌÒ¾Öp¿`8¾ÎUä¿:[_¿ÿ=şá(?^ª[ÀJ¡ÿ@“-µÀ{õe@¹V~½†©À€Du¿7uÚ¾zCÀ¿|‚î¿*¾gêk¿Iº>+‚À?_•¿B]9@Oğ¾ÖGÖ@Íd©»Ë4­À“Yø¾«-š¾Öp¿ƒµB¾Xô<¿:[`¿&íÎ> ƒZ?j´ ¿áµ£@•…ØÀš
+z@×·P¾}À—¿èÓ˜¾ÀæÑ¾zCÀ¿”l+¾š
+¾gês¿m$á>-—F?jùf¿ ¨@fÕÇ¿7ÍÙ@ïõ§=´ú<À­ 2'Æ„¾Öp¿Š|l´h}¿:[a¿/„û>ä?vÜ:¿,Û“@—êÀ³Sl@ÏBR¾Ô;¿<b2à|(¾zCÀ¿œ‰´H†¾gêr¿yY>. ?vÜ:¾êŠÍ@‡é±¿ìH@÷{š¾UWV¿‰ƒr>«-›¾Öp¿ƒµC>Xô.¿:[`¿&íÑ> ƒZ=ª_ ?µhU@ĞÀ•Çì@Õ!î>Kª@a&2'Æ„¾Öp¿Š|l´h}¿:[a¿/„û>ä=<P>ÈÑÛ@ˆÒêÀˆ“Í@íe>²ËÄ?Ié[2à|(¾zCÀ¿œ‰´H†¾gêr¿yY>. =<P¾89Ë@rkı½ãíA ‹¾³}?ˆé>ÀæÒ¾zCÀ¿”l,>šÿ¾gês¿m$â>-—F=¨4¼=¸=Ì@Vºr¿V¯é@ï™z=À$¶@=?"ÌÔ¾Öp¿`<>ÎUß¿:[`¿ÿ=şá(>V”@9Gt@”=À„¼õ@µ†’=yßë@„Í?7uÜ¾zCÀ¿|‚ò?'¾gê¿Iº>+‚À>¥¨>ÀãA@J¦$¿0É@Ë§€=uå@”™½?`=¾Öp¿"ÌÔ?ÿ‰¿:[c¾ÎUã=şá(>4Ğ@€Œ/@“»–ÀCÒ4@ƒ+U    @¹ÁŞ?|‚ö¾zCÀ¿7uÚ?Iº¾gê€¿)>+‚À>30ğ?S‚@K.>¿_@“zÚ    @ÍIñ?ƒµD¾Öp¾«-?&íÏ¿:[c¾Xô	=şá(>cµ<@˜%@“³Ş¿Û¹@Àd    @Úç¥?”l/¾zCÀ¾ÀæÑ?m$ç¾gêx¾šç>+‚À>b¼:?2ğ@K“¾·™ş@ğ9    @ñE~?Š|h¾Öp2€  ?/„ü¿:[a59é€=şá(>‰#Æ@¡À›@“®9¾_h{½Æ„H    @åíë?œ…¾zCÀ3   ?yY¾gêz5yâ>+‚À>‰#Æ?EF‰@KÏ¾Hµù½-œ    @ıƒ8?ƒµ?¾Öp>«-—?&íÎ¿:[`>Xô@=şá(> lê@œ¢ˆ@“®@?§vÂÀª^    @Ù81?”l(¾zCÀ>ÀæÎ?m$ß¾gêƒ>š>+‚À> éi?PÃ@KĞ¼Ñ}ØÀB^    @ğ¯º?`2¾Öp?"ÌÏ?ÿ¿:[`>ÎUä=şá(>·ß@@ˆc@“³è@/æÀˆSE    @¶hò?|‚é¾zCÀ?7uÖ?Iº¾gêƒ?'>+‚À>¸¯?Qc‡@K’>4F‰À•ó‚    @Ìâ?"ÌÎ¾Öp?`6>ÎUã¿:[`?ÿ=şá(>Ïœ>@Ke`@“»@|è5À¸Ã    @‚?7uÕ¾zCÀ?|‚î?'¾gêw?Iº>+‚À>Ğt²?=ê$@K.=>Ñ`’ÀÍIŞ    @“zÇ>«-•¾Öp?ƒµ?>Xô6¿:[`?&íÏ=şá(>ç¯Ä?ß	M@“ÀX@˜7BÀÕb†    @T1>ÀæË¾zCÀ?”l(>š¾gêv?m$â>+‚À>è:Y?şA@KM	?!àñÀğI§    @O®²Á¾Öp?Š|i3¬,Â¿:[a?/„û=şá(?   >Eä@“Á$@¡ĞwÀŞŸ}´ò(½À2,²/EÁ¾zCÀ?œ†4è¹¾gês?yY>+‚À?   >w:@Kb”?GhÀûÔGµ5µ¼½,kR¾«-—¾Öp?ƒµ@¾Xô5¿:[`?&íÏ=şá(?(¿»gd@“Á+@š»qÀÓ}”³•²ÎÀÅU¾ÀæÎ¾zCÀ?”l)¾š¾gêr?m$ã>+‚Â?âÏ½®„Õ@Kb‹?KXVÀïX    À3w¿"ÌĞ¾Öp?`6¾ÎUâ¿:[`?ÿŒ=şá(?1İÀ8ñ>@“Àg@„?À´c5U‡À†Ğ¿7uÕ¾zCÀ?|‚î¿'¾gêt?Iº>+‚À?Å£¾Án@KM	?1ZñÀË@â55ı	À•W¿`5¾Öp?"ÌĞ¿ÿ‹¿:[a>ÎUç=şá(?$\À€Œ@“»—@CÒVÀƒ+Jµ·À¹ÁÓ¿|‚î¾zCÀ?7u×¿Iº¾gêy?'>+‚À?#¨v¿S0@K.=?³À“zÇ    ÀÍIİ¿ƒµ@¾Öp>«-—¿&íÎ¿:[`>Xô:=şá(?/É‰À˜%‚@“³à?ÛÿÀÀ5ÕöÀÚç¿”l)¾zCÀ>ÀæĞ¿m$à¾gê†>š>+‚À?/‹J¿2ïâ@K“>·›ÀğV    ÀñEk¿Œ½û%@¾¶Áù¿,Œ#?4œU¾`A>^´N?GPğ@S7¦@[ŠH?©ıÚ@#)    Àáø€¿“Ú¥½û%@3   ¿5mU?4œU2 F—>^´N?;n@c%@[ŠI>y®½a§k    Àí×¿Y &=Ş€³   ¿sI€>ŸWI±²Ñå>Šiê?;n?Ñ@r@Ã,¾ºò	;ƒ˜@µíÄÀÂÀç¿N¬=Ş€¾†0æ¿ga<>ŸWF¾–\>Šiê?GPğ?Õs¸@Ã,>!´?ñ7–    À¹.‰¿o;£½û%@¿-Ğ¿Ç?4œU¾ÕG¾>^´N?S3Â@.S@[ŠJ@	@‰å    ÀÀË…¿/¨ˆ=Ş€¾ÿ?¿DÒË>ŸWJ¿ $>Šiê?S3Â?ÄÂ%@Ã,?*^}@e'‚    À{½¿-Ğ½û%@¿o;£¾ÕGÅ?4œU¿Ç>^´N?_•?öw–@_½ø@D›@Ã‹>‹ÖeÀ„:H¾ÿ?=Ş€¿/¨ˆ¿ %>ŸWL¿DÒÊ>Šiê?_•?—|Ÿ@·Ü÷?…™†@¢a=µØÀWùz¾¶Áú½û%@¿Œ¾`A˜?4œX¿,Œ >ZQœ?jùf?q*ê@núı@pd¢@å©â?6EË¿ÇIl¾†0ç=Ş€¿N®¾–\>ŸWN¿ga:>…A?jùf?3X@ g?—¯è@½ƒL?¿» 2Õ½û%@¿“Ú§³(\¡?4œX¿5mR>J?vÜ:>$á@@vÖş@`¹{@úÏF?wÀ9¾_™Ó²›t=Ş€¿Y (³É,>ŸWJ¿sI>T~?vÜ:>èŒâ@‘˜ @„(@ÈR×?—è]¾Š"(>¶Áû½û%@¿Œ>`A‰?4œW¿,Œ >ZQœ=¨4¼¿Èfv@gå@y @é.{¿EZ{?ÂSY2Õ½û%@¿“Ú§³(\¡?4œX¿5mR>J=<P¿@S@“Æ•@§ÑI@ãR¿¿°ÅÌ¾äŒë²›t=Ş€¿Y (³É,>ŸWJ¿sI>T|=<P>K’@›g³>º&û@¾
+·¾-s?#>†0æ=Ş€¿N®>–\>ŸWM¿ga;>…A=¨4¼¾©@³lé?Ä;@»’ô¿;š?©T?-Ğ½û%@¿o;§>ÕG¼?4œX¿Ç>^´N>¥¨À(|@` o@2C2@Á÷¬½¸jw@‡¡ò>ÿ?=Ş€¿/¨Š?  >ŸWQ¿DÒÍ>Šiì>¥¨¿-4Ï@Æl2?È	*@Ÿƒ˜¿…ó@Yì?o;¨½û%@¿-Ğ?Ç	?4œZ¾ÕGÁ>^´N>30ğÀ@éñ@[ŠJ?ñÖœ@Œ¿G    @¾¸ø?/¨Š=Ş€¾ÿ??DÒÇ>ŸWS¿ '>Šiê>30ğ¿Ñ$@Ã,? Î"@d½6/&e@¢k?Œ½û%@¾¶Áş?,Œ ?4œZ¾`Ae>^´N>b¼>À\ÖŠ@[ŠE?]Œ^@×öµv@àá™?N°=Ş€¾†0é?ga=>ŸWT¾–[ó>Šiê>b¼>¿¸‘`@Ã, ?Z8ï?ğ=-µa˜@¹Bá?“Ú£½û%@3   ?5mS?4œX59f >^´N>‰#ÂÀc%@[ŠB¾yÿ=a95j@íÏ?Y "=Ş€³   ?sI€>ŸWF5`ì>Šiì>‰#Ä¿Ñ@\@Ã,$>ºñ°»ƒÄÛ    @ÂÀê?Œ½û%@>¶Á÷?,Œ!?4œV>`A–>^´N> émÀS7°@[ŠI¿©ıÒÀ#1    @áø‡?N¨=Ş€>†0â?ga:>ŸWN>–\>Šiê> éi¿ÕsÍ@Ã,¾!´Ü¿ñ7ª6/&j@¹.‰?o;½û%@?-Ğ?Ç?4œV>ÕG¾>^´N>¸¯À.L@[ŠJÀ!À‰å    @ÀË’?/¨=Ş€>ÿ??DÒÌ>ŸWI? &>Šiê>¸¯¿ÄÂ.@Ã,$¿*^ˆÀe'—    @{È?-Ğ½û%@?o;¡>ÕG½?4œX?Ç>^´N>Ğt²¿ñÖ@[ŠJÀ@éæÀ¾¸é    @Œ¿8>ÿ?=Ş€?/¨„? &>ŸWL?DÒÊ>Šiê>Ğt²¿ Î-@Ã,$¿Ñ-À¢]    @d½ >¶Áõ½û%@?Œ>`A?4œV?,Œ!>^´N>è:Y¿]Œ²@[ŠJÀ\ÖÀàá‚    @×ú>†0á=Ş€?N¨>–\>ŸWI?ga;>Šiê>è:Y¿Z8ú@Ã, ¿¸‘RÀ¹BÖµíÃü?ğ=C²ˆà/½û%@?“Ú¤4Rº?4œW?5mS>^´N?   >y<@[ŠFÀc%Àíñ    =a§Ä³:OÌ=Ş€?Y %3j>ŸWJ?sI>Šiê?   ¾ºò$@Ã,¿Ñ@VÀÂÀä    »ƒ–Î¾¶Áø½û%@?Œ¾`AŠ?4œX?,Œ!>^´N?âÏ?©ş@[ŠMÀS7µÀáøŒ´ˆ ]À#-¾†0æ=Ş€?N¨¾–\>ŸWH?ga9>Šiê?âÑ>!¶‰@Ã,¿ÕsšÀ¹.¡    ¿ñ7Å¿-Ğ½û%@?o;¡¾ÕG¿?4œW?Ç>^´N?Å¥@
+@[ŠJÀ.VÀÀËr4ˆ IÀ‰äı¾ÿ?=Ş€?/¨„¿ #>ŸWK?DÒÌ>Šiê?Å£?*^{@Ã,¿ÄÂgÀ{»    Àe'~¿o; ½û%@?-Ğ¿Ç?4œW>ÕGÂ>^´N?#¨v@@éì@[ŠJ¿ñÖ‘ÀŒ¿A    À¾¸ô¿/¨‡=Ş€>ÿ?¿DÒÊ>ŸWH? '>Šiê?#¨v?Ğö@Ã, ¿ ÎIÀd½5íÃÿÀ¢a¿Œ½û%@>¶Áø¿,Œ"?4œV>`A•>^´N?/‹J@\Ö{@[ŠI¿]ŒºÀØ     Ààá‚¿N¬=Ş€>†0ä¿ga:>ŸWJ>–\>Šiê?/‹J?¸‘2@Ã,$¿Z9¿ğ=6    À¹BË¿u‹ ?¶²@  ¿hÛ4¾Ô»ó³³V>«¹2?;nÀ |@¼ŒÊ½kõ³; ø¶)4úÀÍ=¿i†x?¶¾—Á¿]uŸ¾Ô»ô¾éº>«¹4?GPîÀÒY@¼ŒÏ¿O @?şIn¶)5ÀÃ%&¿F¦?¶¿S™¿<b|¾Ô»ò¿Ş•>«¹4?S3Ã¿ùæ@¼ŒÈ¿¾V@q†Î    À¥òú¿Sš?¶¿F¦¿Ş–¾Ô»ò¿<bz>«¹4?_–¿·âñ@Âœ2Àæ@¨Ÿ¿vhÀeÖ¾¾—Á?¶¿i†x¾éÀ¾Ô»ô¿]uŸ>±´6?jùj¿,;q@´Ö´Àö!@Åà¿X´h¿¿•-²›t=Ş€¿Y (³É,>ŸWJ¿sI>T~?vÜ:>èŒâ@‘˜ @„(@ÈR×?—è]¾Š"(±§PB?¶¿u‹´+·¾Ô»ú¿hÛ4>·ã@?vÜ;¾»w@›é.¿Ñ‘ı@Â ”¾ƒã`¿BÚƒ²›t=Ş€¿Y (³É,>ŸWJ¿sI>T|=<P>K’@›g³>º&û@¾
+·¾-s?#±§PB?¶¿u‹´+·¾Ô»ú¿hÛ4>·ã@=<P>œC@Ò;À'e@Öô®? +P>½;ı>—Á?¶¿i†{>é¼¾Ô»ı¿]u >±´5=¨4¼?-ı’@*¿÷¿¯@Å3 ?ª¼?Êñ?Sš?¶¿F¦?Ş”¾Ô»û¿<b|>«¹4>¥¨?²Òü@±_ß¿êTe@¨Ğ„>4qà@fã?F¦?¶¿Sœ?<bw¾Ô»ù¿Ş˜>«¹4>30ğ@ á}@¼ŒÌ¿²)#@q»5ó
+@¦"M?i†|?¶¾—Á?]u£¾Ô»ı¾é¢>«¹4>b¼>@§@¼ŒÉ¿3“™?ı&6)4ú@Ã=ÿ?uŠü?¶²@  ?hÛ5¾Ô»ô5>¢>«¹2>‰#Ä@ y@¼ŒÎ=kò»¡˜5=¹ú@Í=!?i†u?¶>—Àı?]uŸ¾Ô»ø>é¿>«¹2> éi@Ò^@¼ŒÌ?O U¿şIh5ó@Ã%?F¥ı?¶?S–?<by¾Ô»ô?Ş–>«¹2>¸¯?ù@¼ŒË?¾/Àq†ó    @¥ó?S–?¶?F¥ş?Ş—¾Ô»ö?<b{>«¹2>Ğt²?²)1@¼ŒÉ@ áoÀ¦"M    @q´>—Àü?¶?i†u>éÃ¾Ô»ö?]uŸ>«¹2>è:Y?3“ˆ@¼ŒÎ@§ÀÃ=ı¶)5 ?ıI³¯†?¶?uŠş2³X¾Ô»ù?hÛ4>«¹4>ÿÿş½k÷u@¼ŒÌ@ yÀÍ=¶)4ÿ» ïQ¾—Á?¶?i†u¾éÁ¾Ô»÷?]u>«¹4?âÒ¿O N@¼ŒÇ@ÒdÀÃ%'    ¿şIx¿S˜?¶?F¥ş¿Ş“¾Ô»ö?<b{>«¹4?Å¤¿¾@¼ŒÉ?ù(À¥ó    Àq†ë¿F¦?¶?S™¿<by¾Ô»ô?Ş™>«¹4?#¨uÀ áZ@¼ŒÅ?²)sÀq¼6)5À¦"N¿i†x?¶>—Àş¿]u¡¾Ô»ô>éº>«¹2?/‹HÀœ@¼ŒÍ?3“¦¿ıG6)4òÀÃ=ñ²¸áı¿K ¿M‰ğ´ï¿A¤H¿'r¸=¯×X?vÜ;6wIh@?‚Àúô@©qß>Mû×¿‡ò	2'Æ„¾Öp¿Š|l´h}¿:[a¿/„û>ä?vÜ:¿,Û“@—êÀ³Sl@ÏBR¾Ô;¿<b²¸áı¿K ¿M‰ğ´ï¿A¤H¿'r¸=¯×\=<P?ø@– <À±t@»7<È¡?YÿÁ2'Æ„¾Öp¿Š|l´h}¿:[a¿/„û>ä=<P>ÈÑÛ@ˆÒêÀˆ“Í@íe>²ËÄ?Ié[²˜#L¿qó¿Lµ³°§?rD¾¥oº<JKÀ?vÜ:?jF›@p<úA4\â@À¤ş>õ×è>à5³$`¿[P¿>Ö´<1²<ßs¿ç=@?vÜ;=ß9 @”’Š½:Øw@œwX?2*¿
+Dş²˜#L¿qó¿Lµ³°§?rD¾¥oº<JKÀ=<P¿jG@p<ìA4\Ö@À¥¾õØ¾à*³$`¿[P¿>Ö´<1²<ßs¿ç=H=<P½ß9Ç@”’…½:Õ@œwd¿23?
+Dç¿‘8T?IbÈ2À  ¿Ë(¿Nà±:MJ>ÅYÚ?;nÀ–ª@k†T½öz=Šˆ5    ÀõM¿ŠÊ?IbÈ¾³€v¿iÈ¿Nà¾:d>ÅYÚ?GPğÀ$@k†X¿ÈÜ @˜Åµ¢¶Àèo¿jø’?IbÈ¿*·d¾óı9¿Nà¾±D¹>ÅYÚ?S3ÂÀoBg@k†ZÀ7V¡@‘Ñ    ÀÅZ¿*·g?IbÈ¿jø¾±DÂ¿Nà¾óı5>ÅYÚ?_•À*(±@j‚âÀw;{@Èïk½Q´ÎÀŒ¾³€{?IbÈ¿ŠË¾:d'¿Nà¿iÇ>ÅÓX?jùf¿¾,æ@‚‚.À Ó@ğñß¿;Mœ¿½|±§PB?¶¿u‹´+·¾Ô»ú¿hÛ4>·ã@?vÜ;¾»w@›é.¿Ñ‘ı@Â ”¾ƒã`¿BÚƒ2‰ÂŒ?IbÈ¿‘8V´¹ô¿Nà¿Ë&>ÍÉR?vÜ:¾è&c@’aÀ¨ÕU@é¿´Û?&±§PB?¶¿u‹´+·¾Ô»ú¿hÛ4>·ã@=<P>œC@Ò;À'e@Öô®? +P>½;ı2‰ÂŒ?IbÈ¿‘8V´¹ô¿Nà¿Ë&>ÍÉR=<P?1Íı@‚pIÀ¸SA€-?ˆŸ¾¾ Î>³€|?IbÈ¿ŠÌ>:d¿Nà¿iÇ>ÅÓW=¨4¼?ÜÒ@wÀœ94@ğ„”?1÷?ÕïÈ?*·h?IbÈ¿jø•>±D¸¿Nà¾óı3>ÅYÛ>¥¨@>a@t’nÀxsN@Ç¯Ô>Hşò@(š?jø–?IbÈ¿*·h>óı3¿Nà¾±D½>ÅYÚ>30ğ@xLù@k†WÀ*å@P‡5S\æ@ÇÄ?ŠÎ?IbÈ¾³€}?iÇ¿Nà¾:cÿ>ÅYÚ>b¼>@z@k†Y¿«š#@\˜    @éÅ–?‘8R?IbÈ2À  ?Ë'¿Nà4á™™>ÅYÚ>‰#Ä@–ª@k†S=ö½ŠŠÿ5aa@õZ?ŠÉ?IbÈ>³€s?iÈ¿Nà>:d!>ÅYÚ> éi@@k†Q?ÈÜ=À˜¿4ÅX£@èo?jø‹?IbÈ?*·e>óı:¿Nà>±DÀ>ÅYÚ>¸¯@oBb@k†U@7VªÀ‘Ñ    @ÅZ?*·b?IbÈ?jø>±D¿¿Nà>óı8>ÅYÚ>Ğt²@*äö@k†T@xLøÀÇÄ    @P‚>³€s?IbÈ?ŠÉ>:d%¿Nà?iÆ>ÅYÚ>è:Y?«š?@k†U@zˆÀéÅ™    @\À²˜®?IbÈ?‘8S3#Ÿ¿Nà?Ë%>ÅYÚ>ÿÿü½ö]@k†[@–ªÀõSµaa½Šˆ¾³€w?IbÈ?ŠÊ¾:d ¿Nà?iÇ>ÅYÚ?âÑ¿ÈÜM@k†^@"Àèo    À˜¿¿*·e?IbÈ?jø¾±D¹¿Nà>óı9>ÅYÚ?Å¥À7V¹@k†^@oBoÀÅN    À‘Ñ¿jø?IbÈ?*·e¾óı8¿Nà>±D½>ÅYÚ?#¨xÀxL÷@k†_@*åÀP    ÀÇÀ¿ŠÊ?IbÈ>³€x¿iÉ¿Nà>:d!>ÅYÚ?/‹LÀz…@k†X?«šmÀ\Æ5aa ÀéÅ£¿¶#?t03À  ¾Ÿ£=¿s=2>İV^?;nÁòš@aŒ¾}Q^=ÿ¦4¡bßÁTR¿­9r?t0¾á"Ó¾—Ó¿s=½ÅR¯>İV^?GPğÁ=@a’ÀL[@>^¾µIö-Á´i¿“Z|?t0¿Vø¾&O¿s=¾;ªV>İV_?S3ÃÀòÒ@@a’Àº4}@³õ†µIöDÀõÔİ¿Vû?t0¿“Z}¾;ª^¿s=¾&J>İV_?_”À¯û@c%MÀşyï@øè¥½cßÀ®"²¾á"Ø?t0¿­9s½ÅR¹¿s=¾—Ó>ŞtŒ?jùhÀ4Ó(@iáqÁpõA
+²¾M\ÀtÂ2‰ÂŒ?IbÈ¿‘8V´¹ô¿Nà¿Ë&>ÍÉR?vÜ:¾è&c@’aÀ¨ÕU@é¿´Û?&3X3?t0¿¶#²¨|L¿s=¾Ÿ£=>àö?vÜ;¿N‰“@€‡ÄÁ²fAz„¿Dë>GÁp2‰ÂŒ?IbÈ¿‘8V´¹ô¿Nà¿Ë&>ÍÉR=<P?1Íı@‚pIÀ¸SA€-?ˆŸ¾¾ Î3X3?t0¿¶#²¨|L¿s=¾Ÿ£=>àö=<P?Í ¡@†±èÁSÚA'üB>¢WD?Ia+>á"Ø?t0¿­9t=ÅR©¿s=¾—Ó>ŞtŠ=¨4¼@VMî@lIÂÁq)AE>ŞÂ–@%7?V?t0¿“Z~>;ªR¿s=¾&K>İV^>¥¬@¹8š@_Ü.Àñ‰à@øÆ=Œè	@®ï?“Z€?t0¿Vü>&M¿s=¾;ªY>İV_>30ô@ü —@a”À­e„@²0z´¡bõ@÷?­9v?t0¾á"Ø>—Ó¿s=½ÅR>İV_>b¼:A¯Y@a’À-şû@:5c    A
+û?¶#Œ?t03À  >Ÿ£B¿s=4v?‰>İV_>‰#ÄAò–@a>}Pá½
+®´¡bàATR?­9p?t0>á"Ò>—Ó¿s==ÅR²>İV_> éiA=@aŠ@LZÀ>^º5Iö2A´u?“Zy?t0?Vû>&J¿s=>;ªV>İV^>¸¯@òÒ;@aˆ@º4sÀ³õ}5Iö3@õÔÏ?Võ?t0?“Zz>;ª[¿s=>&N>İV^>Ğt²@­ew@a@ü ‘À÷4¡bî@²0y>á"Ñ?t0?­9q=ÅR¾¿s=>—Ó>İV^>è:Y@-ÿ	@a’A¯WÁ
+÷    @:5Š2	ª„?t0?¶#3"_¿s=>Ÿ£>>İV^>ÿÿü¾}Oı@aAò–ÁTX    ½ ¾á"Ò?t0?­9r½ÅR¶¿s=>—Ó>İV^?âÒÀL`@aA=Á´o    À>^À¿Vø?t0?“Z{¾;ªX¿s=>&M>İV^?Å¤Àº4q@a@òÒCÀõÔÌ    À³õv¿“Z{?t0?Vü¾&K¿s=>;ªY>İV^?#¨wÀü “@a@­e}À²0s´¡béÀ÷¿­9r?t0>á"Õ¾—Ó¿s==ÅR¼>İV^?/‹HÁ¯T@aŠ@-şäÀ:5†    Á
+û¿çcL?ˆ.ˆ¿]h¾[ö¼¿yb~½ğğ>í¸x?GPğÁg@]~ÀDŞ.@FË?5FÕ¦Á2ØH¿ÄÔ‹?ˆ.ˆ¿j¾;É¿yb~¾ñó>í¸x?S3ÁÁL–Ù@]Àìsn@Í•µFÕ½Á»ç¿ÄÔ‹?ˆ.ˆ¿j¾;É¿yb~¾ñó>í¸x?S3ÁÁL–Ù@]Àìsn@Í•µFÕ½Á»ç¿k?ˆ.ˆ¿ÄÔŒ¾ñü¿yb~¾;Ä>í¸x?_”Á
+ß@]‘Á/©ATP    Àæô¿k?ˆ.ˆ¿ÄÔŒ¾ñü¿yb~¾;Ä>í¸x?_”Á
+ß@]‘Á/©ATP    Àæô¿]n?ˆ.ˆ¿çcM½ğó¿yb}¾[ö¸>í¸x?jùhÀÉ4@h«Áb0¥A/Qè½hİcÀwjº3X3?t0¿¶#²¨|L¿s=¾Ÿ£=>àö?vÜ;¿N‰“@€‡ÄÁ²fAz„¿Dë>GÁp¿]n?ˆ.ˆ¿çcM½ğó¿yb}¾[ö¸>í¸x?jùhÀÉ4@h«Áb0¥A/Qè½hİcÀwjº3æ—S?ˆ.ˆ¿óK­137ø¿yb~¾gHœ>í¸x?vÜ;À,¢{@†ûÁˆ?&A3>’¾Z{Æ¿Z¦%3X3?t0¿¶#²¨|L¿s=¾Ÿ£=>àö=<P?Í ¡@†±èÁSÚA'üB>¢WD?Ia+3æ—S?ˆ.ˆ¿óK­137ø¿yb~¾gHœ>í¸y=<P6ap@?sÁ™aqAJhº6?{„@ ;˜?]p?ˆ.ˆ¿çcM=ğé¿yb~¾[öÂ>í¸x=¨4¼@_„L@{6Áƒ2CA4m!>q@&ı?]p?ˆ.ˆ¿çcM=ğé¿yb~¾[öÂ>í¸x=¨4¼@_„L@{6Áƒ2CA4m!>q@&ı?q?ˆ.ˆ¿ÄÔ>ñô¿yb~¾;Í>í¸x>¥¬@ñô@b¸–ÁQYÔAV{=cq%@ÇNi?q?ˆ.ˆ¿ÄÔ>ñô¿yb~¾;Í>í¸x>¥¬@ñô@b¸–ÁQYÔAV{=cq%@ÇNi?ÄÔ?ˆ.ˆ¿l>;É¿yb~¾ñ÷>í¸x>30ôA/©@]ŒÁ
+é@æôµFÕÅAT`?ÄÔ?ˆ.ˆ¿l>;É¿yb~¾ñ÷>í¸x>30ôA/©@]ŒÁ
+é@æôµFÕÅAT`?çcP?ˆ.ˆ¿]n>[öÁ¿yb½ğİ>í¸x>b¼:AWæ¦@]ÀÀ@Ô²    A-æ˜?çcP?ˆ.ˆ¿]n>[öÁ¿yb½ğİ>í¸x>b¼:AWæ¦@]ÀÀ@Ô²    A-æ˜?óKª?ˆ.ˆ4<  >gH¡¿yb~40k>í¸x>‰#ÄAkî@]¿ÄŞJ>ÿığµFÕ­A9rú?óKª?ˆ.ˆ4<  >gH¡¿yb~40k>í¸x>‰#ÄAkî@]¿ÄŞJ>ÿığµFÕ­A9rú?çcJ?ˆ.ˆ?]m>[ö»¿yb~=ğò>í¸y> ékAg@]ˆ@DŞ#ÀFËaµFÕ¶A2ØL?çcJ?ˆ.ˆ?]m>[ö»¿yb~=ğò>í¸y> ékAg@]ˆ@DŞ#ÀFËaµFÕ¶A2ØL?ÄÔ‰?ˆ.ˆ?m>;Â¿yb~>ñò>í¸y>¸¯AL–Ö@]z@ìsBÀÍ‡5FÕ§A»ã?ÄÔ‰?ˆ.ˆ?m>;Â¿yb~>ñò>í¸y>¸¯AL–Ö@]z@ìsBÀÍ‡5FÕ§A»ã?i?ˆ.ˆ?ÄÔŠ>ñ÷¿yb~>;Ë>í¸y>Ğt´A
+á@]uA/¨ıÁTV5FÕ±@æô
+?i?ˆ.ˆ?ÄÔŠ>ñ÷¿yb~>;Ë>í¸y>Ğt´A
+á@]uA/¨ıÁTV5FÕ±@æô
+?]l?ˆ.ˆ?çcK=ğü¿yb}>[ö¼>í¸x>è:W@Àé@]~AWæ”Á-æˆ5FÕ©@ÔÁ?]l?ˆ.ˆ?çcK=ğü¿yb}>[ö¼>í¸x>è:W@Àé@]~AWæ”Á-æˆ5FÕ©@ÔÁ3Yâõ?ˆ.ˆ?óK¬2ë9{¿yb~>gH >í¸x>ÿÿş?ÄŞ£@]ƒAkİÁ9s
+    ?  3Yâõ?ˆ.ˆ?óK¬2ë9{¿yb~>gH >í¸x>ÿÿş?ÄŞ£@]ƒAkİÁ9s
+    ?  ¿]l?ˆ.ˆ?çcL½ğ÷¿yb~>[ö»>í¸x?âÑÀDŞq@]„AgÁ2ØE    ÀFËN¿]l?ˆ.ˆ?çcL½ğ÷¿yb~>[ö»>í¸x?âÑÀDŞq@]„AgÁ2ØE    ÀFËN¿j?ˆ.ˆ?ÄÔ‹¾ñ÷¿yb~>;Ä>í¸x?Å¤ÀìsE@]„AL–âÁ»à    ÀÍ‡¿j?ˆ.ˆ?ÄÔ‹¾ñ÷¿yb~>;Ä>í¸x?Å¤ÀìsE@]„AL–âÁ»à    ÀÍ‡¿ÄÔŠ?ˆ.ˆ?n¾;Ã¿yb|>ñö>í¸x?#¨wÁ/©@]„A
+çÀæóôµFÕªÁTL¿ÄÔŠ?ˆ.ˆ?n¾;Ã¿yb|>ñö>í¸x?#¨wÁ/©@]„A
+çÀæóôµFÕªÁTL¿çcL?ˆ.ˆ?]n¾[ö·¿yb|=ğş>í¸y?/‹JÁWæ„@]z@À5ÀÔ¾µFÕ²Á-æ¿çcL?ˆ.ˆ?]n¾[ö·¿yb|=ğş>í¸y?/‹JÁWæ„@]z@À5ÀÔ¾µFÕ²Á-æ¿óK¬?ˆ.ˆ4<  ¾gH˜¿yb|1†iø>í¸y?;nÁkÍ@]v?ÄŞÈ¿   5FÕ˜Á9rú¿óK¬?ˆ.ˆ4<  ¾gH˜¿yb|1†iø>í¸y?;nÁkÍ@]v?ÄŞÈ¿   5FÕ˜Á9rú¿çcL?ˆ.ˆ¿]h¾[ö¼¿yb~½ğğ>í¸x?GPğÁg@]~ÀDŞ.@FË?5FÕ¦Á2ØH2à|(¾zCÀ¿œ‰´H†¾gêr¿yY>. ?vÜ:¾êŠÍ@‡é±¿ìH@÷{š¾UWV¿‰ƒr2Õ½û%@¿“Ú§³(\¡?4œX¿5mR>J?vÜ:>$á@@vÖş@`¹{@úÏF?wÀ9¾_™Ó2à|(¾zCÀ¿œ‰´H†¾gêr¿yY>. =<P¾89Ë@rkı½ãíA ‹¾³}?ˆé2Õ½û%@¿“Ú§³(\¡?4œX¿5mR>J=<P¿@S@“Æ•@§ÑI@ãR¿¿°ÅÌ¾äŒë¿ÄÔ‹?ˆ.ˆ¿j>xë?|XŒ=Êª@?d Ê?Å ?/u?òcÀËPƒÀ¾v?$À?°r·¿çcL?ˆ.ˆ¿]h>#õ¡?|X=U??QGx?_¡?]Ní>‘Z,Àâ¢ÁÀ¦¾5?D×«?€êÖ¿çcL?ˆ.ˆ¿]h>#õ¡?|X=U??QGx?_¡?]Ní>‘Z,Àâ¢ÁÀ¦¾5?D×«?€êÖ¿óK¬?ˆ.ˆ4<  >,e®?|X1—#b?<b?®Ğ>
+óê=©lÀî„¾ÀšÜ1?Qªš>‡¿óK¬?ˆ.ˆ4<  >,e®?|X1—#b?<b?®Ğ>
+óê=©lÀî„¾ÀšÜ1?Qªš>‡¿çcL?ˆ.ˆ?]n>#õ¢?|XŒ½UQ?'}¥?_¡¿,Ü¾c¤Àêl—Àôm?I÷†¿¿çcL?ˆ.ˆ?]n>#õ¢?|XŒ½UQ?'}¥?_¡¿,Ü¾c¤Àêl—Àôm?I÷†¿¿ÄÔŠ?ˆ.ˆ?n>xê?|XŒ½ÊªR?¤T?Å ¿ ğ¾éÀ×ê•À±vf?.B¿Îº¿ÄÔŠ?ˆ.ˆ?n>xê?|XŒ½ÊªR?¤T?Å ¿ ğ¾éÀ×ê•À±vf?.B¿Îº¿j?ˆ.ˆ?ÄÔ‹=ÊªO?|X¾xî?®î>éŸ3¿°r»¿$À
+À¾nÀËPŒ?òq¿/_¿j?ˆ.ˆ?ÄÔ‹=ÊªO?|X¾xî?®î>éŸ3¿°r»¿$À
+À¾nÀËPŒ?òq¿/_¿]l?ˆ.ˆ?çcL=UL?|X¾#õ£>ø(™>Ãì¿€êµ¿D×±À¦¾4Àâ¢¾>‘Z*¿]O¿]l?ˆ.ˆ?çcL=UL?|X¾#õ£>ø(™>Ãì¿€êµ¿D×±À¦¾4Àâ¢¾>‘Z*¿]O3Yâõ?ˆ.ˆ?óK¬³C8g?|XŒ¾,e¯>ñŠ?>š"¾¾†Ì¿Qª¦ÀšÜ6Àî„Ï=©¾
+ôa3Yâõ?ˆ.ˆ?óK¬³C8g?|XŒ¾,e¯>ñŠ?>š"¾¾†Ì¿Qª¦ÀšÜ6Àî„Ï=©¾
+ôa?]l?ˆ.ˆ?çcK½UT?|XŒ¾#õ£>ø(›>`±Ú?¿I÷–ÀôrÀêl‰¾c‰?,?]l?ˆ.ˆ?çcK½UT?|XŒ¾#õ£>ø(›>`±Ú?¿I÷–ÀôrÀêl‰¾c‰?,?i?ˆ.ˆ?ÄÔŠ½ÊªN?|XŒ¾xí?®î>L?Î£¿.SÀ±vmÀ×êŠ¾éö? ï?i?ˆ.ˆ?ÄÔŠ½ÊªN?|XŒ¾xí?®î>L?Î£¿.SÀ±vmÀ×êŠ¾éö? ï?ÄÔ‰?ˆ.ˆ?m¾xì?|XŒ½ÊªE?¤R=²íô?/‘¿òcÀËP‚À¾v¿$À?°rà?ÄÔ‰?ˆ.ˆ?m¾xì?|XŒ½ÊªE?¤R=²íô?/‘¿òcÀËP‚À¾v¿$À?°rà?çcJ?ˆ.ˆ?]m¾#õ¨?|XŒ½UJ?'}¥=L1Ø?]Nè¾‘Z:Àâ¢ÆÀ¦¾3¿D×®?€ê¾?çcJ?ˆ.ˆ?]m¾#õ¨?|XŒ½UJ?'}¥=L1Ø?]Nè¾‘Z:Àâ¢ÆÀ¦¾3¿D×®?€ê¾?óKª?ˆ.ˆ4<  ¾,e·?|XŒ´«î?<b=>ğ>
+óì½ªÀî„ÀÀšÜ4¿Qª¨>†Ï?óKª?ˆ.ˆ4<  ¾,e·?|XŒ´«î?<b=>ğ>
+óì½ªÀî„ÀÀšÜ4¿Qª¨>†Ï?çcP?ˆ.ˆ¿]n¾#õ¥?|XŒ=U5?QGx=L1°¿,>cŠÀêl’Àô[¿I÷{¿?çcP?ˆ.ˆ¿]n¾#õ¥?|XŒ=U5?QGx=L1°¿,>cŠÀêl’Àô[¿I÷{¿?ÄÔ?ˆ.ˆ¿l¾xê?|XŒ=ÊªS?d É=²íì¿ >éêÀ×ê•À±vm¿.R¿Î›?ÄÔ?ˆ.ˆ¿l¾xê?|XŒ=ÊªS?d É=²íì¿ >éêÀ×ê•À±vm¿.R¿Î›?q?ˆ.ˆ¿ÄÔ½ÊªJ?|XŒ>xé?s0>L„¿°rÕ?$ÀÀ¾xÀËP‡¿òd¿/{?q?ˆ.ˆ¿ÄÔ½ÊªJ?|XŒ>xé?s0>L„¿°rÕ?$ÀÀ¾xÀËP‡¿òd¿/{?]p?ˆ.ˆ¿çcM½UC?|XŒ>#õ?|°Ğ>`±Ö¿€êµ?D×­À¦¾/Àâ¢¾¾‘Z$¿]Nç?]p?ˆ.ˆ¿çcM½UC?|XŒ>#õ?|°Ğ>`±Ö¿€êµ?D×­À¦¾/Àâ¢¾¾‘Z$¿]Nç3æ—S?ˆ.ˆ¿óK­0É„†?|XŒ>,e±?€  >š"¾¾†{?QªŸÀšÜ0Àî„Å½©é¾
+ó,3æ—S?ˆ.ˆ¿óK­0É„†?|XŒ>,e±?€  >š"¾¾†{?QªŸÀšÜ0Àî„Å½©é¾
+ó,¿]n?ˆ.ˆ¿çcM=UO?|XŒ>#õ§?|°Ğ>Ãì’?h?I÷~ÀôdÀêlŒ>cÁ?,•¿]n?ˆ.ˆ¿çcM=UO?|XŒ>#õ§?|°Ğ>Ãì’?h?I÷~ÀôdÀêlŒ>cÁ?,•¿k?ˆ.ˆ¿ÄÔŒ=ÊªP?|XŒ>xè?s0>éŸ5?Îº?.XÀ±vzÀ×êŒ>éâ? ¿k?ˆ.ˆ¿ÄÔŒ=ÊªP?|XŒ>xè?s0>éŸ5?Îº?.XÀ±vzÀ×êŒ>éâ? ¿ÄÔ‹?ˆ.ˆ¿j>xë?|XŒ=Êª@?d Ê?Å ?/u?òcÀËPƒÀ¾v?$À?°r·    ?gÓÀ    0È d?€  ²ìıv?<bh>š"Ê3rK`±w¢Á…:Á…92o—15şO9`
+integer `                                                              	         	      
+                                                                                                                                                                                                     !       "   !   !   "   #   "   $   #   #   $   %   $   &   %   %   &   '   &   (   '   '   (   )          (   (      )   *   +   -   -   +   ,   +   .   ,   ,   .   /   .   0   /   /   0   1   0   2   1   1   2   3   2   4   3   3   4   5   4   6   5   5   6   7   6   8   7   7   8   9   8   :   9   9   :   ;   :   <   ;   ;   <   =   <   >   =   =   >   ?   >   @   ?   ?   @   A   @   B   A   A   B   C   B   D   C   C   D   E   D   F   E   E   F   G   F   H   G   G   H   I   H   J   I   I   J   K   J   L   K   K   L   M   L   N   M   M   N   O   N   P   O   O   P   Q   P   *   Q   Q   *   -   S   T   R   R   T   U   R   U   V   V   U   W   V   W   X   X   W   Y   X   Y   Z   Z   Y   [   Z   [   \   \   [   ]   ^   _   a   a   _   `   b   ^   c   c   ^   a   d   b   e   e   b   c   f   d   g   g   d   e   h   f   i   i   f   g   h   i   j   j   i   k   j   k   l   l   k   m   l   m   n   n   m   o   n   o   p   p   o   q   p   q   r   r   q   s   t   r   u   u   r   s   v   t   w   w   t   u   x   v   y   y   v   w   z   x   {   {   x   y   S   z   T   T   z   {   |   }         }   ~   €   |         |      ‚   €   ƒ   ƒ   €      „   ‚   …   …   ‚   ƒ   †   „   ‡   ‡   „   …   ˆ   ‰   ‹   ‹   ‰   Š   Œ   ˆ         ˆ   ‹      Œ         Œ            ‘   ‘         ’      “   “      ‘   ”   ’   •   •   ’   “   –   ”   —   —   ”   •   ˜   –   ™   ™   –   —   š   ˜   ›   ›   ˜   ™   œ   š         š   ›      œ   Ÿ   Ÿ   œ             ¡   ¡      Ÿ   ¢       £   £       ¡   ¤   ¢   ¥   ¥   ¢   £   }   ¤   ~   ~   ¤   ¥   ¦   §   ©   ©   §   ¨   ª   ¦   «   «   ¦   ©   ¬   ª   ­   ­   ª   «   ®   ¬   ¯   ¯   ¬   ­   °   ®   ±   ±   ®   ¯   ²   ³   µ   µ   ³   ´   ¶   ²   ·   ·   ²   µ   ¸   ¶   ¹   ¹   ¶   ·   º   ¸   »   »   ¸   ¹   ¼   º   ½   ½   º   »   ¾   ¼   ¿   ¿   ¼   ½   À   ¾   Á   Á   ¾   ¿   Â   À   Ã   Ã   À   Á   Ä   Â   Å   Å   Â   Ã   Æ   Ä   Ç   Ç   Ä   Å   È   Æ   É   É   Æ   Ç   Ê   È   Ë   Ë   È   É   Ì   Ê   Í   Í   Ê   Ë   Î   Ì   Ï   Ï   Ì   Í   §   Î   ¨   ¨   Î   Ï   ©   ¨   Ñ   Ñ   ¨   Ğ   «   ©   Ò   Ò   ©   Ñ   ­   «   Ó   Ó   «   Ò   ¯   ­   Ô   Ô   ­   Ó   Õ   ¯   Ö   Ö   ¯   Ô   µ   ×   Ù   Ù   ×   Ø   ·   µ   Ú   Ú   µ   Ù   ¹   ·   Û   Û   ·   Ú   »   ¹   Ü   Ü   ¹   Û   ½   »   İ   İ   »   Ü   ¿   ½   Ş   Ş   ½   İ   Á   ¿   ß   ß   ¿   Ş   Ã   Á   à   à   Á   ß   Å   Ã   á   á   Ã   à   Ç   Å   â   â   Å   á   É   Ç   ã   ã   Ç   â   Ë   É   ä   ä   É   ã   Í   Ë   å   å   Ë   ä   Ï   Í   æ   æ   Í   å   ¨   Ï   Ğ   Ğ   Ï   æ   U   T   |   |   T   }   W   U   €   €   U   |   Y   W   ‚   ‚   W   €   [   Y   „   „   Y   ‚   ç   [   è   è   [   „   a   é   ˆ   ˆ   é   ê   c   a   Œ   Œ   a   ˆ   e   c         c   Œ   g   e         e      i   g   ’   ’   g      k   i   ”   ”   i   ’   m   k   –   –   k   ”   o   m   ˜   ˜   m   –   q   o   š   š   o   ˜   s   q   œ   œ   q   š   u   s         s   œ   w   u           u      y   w   ¢   ¢   w       {   y   ¤   ¤   y   ¢   T   {   }   }   {   ¤         R   R      S         V   V      R         X   X      V         Z   Z      X   ë      ì   ì      Z   í   î         î   ^      ^         ^   b      b         b   d      d         d   f      f   )   )   f   h   '   )   j   j   )   h   %   '   l   l   '   j   #   %   n   n   %   l   !   #   p   p   #   n      !   r   r   !   p      r         r   t      t         t   v      v         v   x      x         x   z      z         z   S   Ñ   Ğ   ğ   ğ   Ğ   ï   Ò   Ñ   ñ   ñ   Ñ   ğ   Ó   Ò   ò   ò   Ò   ñ   Ô   Ó   ó   ó   Ó   ò   ô   Ô   õ   õ   Ô   ó   Ù   ö   ø   ø   ö   ÷   Ú   Ù   ù   ù   Ù   ø   Û   Ú   ú   ú   Ú   ù   Ü   Û   û   û   Û   ú   İ   Ü   ü   ü   Ü   û   Ş   İ   ı   ı   İ   ü   ß   Ş   ş   ş   Ş   ı   à   ß   ÿ   ÿ   ß   ş   á   à         à   ÿ   â   á       á      ã   â       â     ä   ã       ã     å   ä       ä     æ   å       å     Ğ   æ   ï   ï   æ     ğ   ï       ï     ñ   ğ       ğ     ò   ñ  	  	   ñ     ó   ò  
+  
+   ò  	     ó       ó  
+   ø             ù   ø       ø     ú   ù       ù     û   ú       ú     ü   û       û     ı   ü       ü     ş   ı       ı     ÿ   ş       ş        ÿ       ÿ                                                                   ï                        	              
+  	  "  "  	  !  #  
+  %  %  
+  $    &  (  (  &  '      *  *    )      ,  ,    +      .  .    -      0  0    /      2  2    1      4  4    3      6  6    5      8  8    7      :  :    9      <  <    ;      >  >    =      @  @    ?      B  B    A      D  D    C      F  F    E   …   ƒ   ®   ®   ƒ   ¬  G   …  H  H   …   ®   ‹  I   ²   ²  I  J      ‹   ¶   ¶   ‹   ²         ¸   ¸      ¶   ‘      º   º      ¸   “   ‘   ¼   ¼   ‘   º   •   “   ¾   ¾   “   ¼   —   •   À   À   •   ¾   ™   —   Â   Â   —   À   ›   ™   Ä   Ä   ™   Â      ›   Æ   Æ   ›   Ä   Ÿ      È   È      Æ   ¡   Ÿ   Ê   Ê   Ÿ   È   £   ¡   Ì   Ì   ¡   Ê   ¥   £   Î   Î   £   Ì   ~   ¥   §   §   ¥   Î      ~   ¦   ¦   ~   §         ª   ª      ¦   ƒ      ¬   ¬      ª  K  L   8   8  L   :  M  N   :   :  N   <  O  P   <   <  P   >  Q  R   >   >  R   @  S  T   @   @  T   B  U  V   B   B  V   D  W  X   D   D  X   F  Y  Z   F   F  Z   H  [  \   H   H  \   J  ]  ^   J   J  ^   L  _  `   L   L  `   N  a  b   N   N  b   P  c  d   P   P  d   *  e  f   *   *  f   +  g  h   +   +  h   .  i  j   .   .  j   0  k  l   0   0  l   2  m  n   2   2  n   4  o  p   4   4  p   6  q  r   6   6  r   8   /   1  s   ,   /  s   -   ,  s   Q   -  s   O   Q  s   M   O  s   K   M  s   I   K  s   G   I  s   E   G  s   C   E  s   A   C  s   ?   A  s   =   ?  s   ;   =  s   9   ;  s   7   9  s   5   7  s   3   5  s   1   3  s`
+integer `                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                `
+end trilist
+end object
+instance "pCylinder1" "pCylinderShape1"
+light "exclusive" []
+material ["initialShadingGroup"]
+caustic on
+caustic 3
+globillum on
+globillum 3
+transform
+2.55457 -0. 0. -0.
+-0. 1.38839 -0. 0.
+0. -0. 2.55457 -0.
+-0.0214365 -4.90726 -0.0392606 1.
+end instance
+instgroup ":MayaTranslatedWorld"
+"defaultLight"
+"pCylinder1"
+"persp"
+end instgroup
+incremental shader "volumeEngine1"
+"adskMayaVolumeEngine" (
+"instances" []
+)
+
+render ":MayaTranslatedWorld" "persp" "miDefaultOptions"
+
